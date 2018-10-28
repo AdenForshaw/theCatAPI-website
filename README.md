@@ -18,9 +18,9 @@ You can run clone this site and see how it works, extend it and add more functio
 #### How do i install it?
 
 - Sign up to [theCatAPI.com](https://theCatAPI.com) for a free API Key
-- clone the repo
+- clone this repo
 - change the 'DEMO-API-KEY' in the ./store/modules/TheCatAPI.js' file for the one from the welcome email
-- run 'npm install' in the directory
+- run 'npm install' in the projects root
 - run 'npm run serve'
 - open 'http://localhost:8080' in your browser
 - hack & improve the codebase
