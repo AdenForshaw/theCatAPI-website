@@ -1,0 +1,230 @@
+<template>
+<v-card>
+
+    
+
+      <!--v-flex xs12 sm6 offset-sm3>
+    <v-radio-group v-model="search_order" required >
+      <p>Order</p>
+      <v-radio
+        label="Random"
+        value="rand"
+      ></v-radio>
+      <v-radio
+        label="Ascending"
+        value="asc"
+      ></v-radio>
+      <v-radio
+        label="Decending"
+        value="desc"
+      ></v-radio>
+    </v-radio-group>
+      </v-flex-->
+
+    <v-layout>
+      <v-flex>
+        <v-card>
+          <v-container grid-list-sm fluid>
+
+        <v-layout row wrap align-center>
+          <v-flex xs6>
+             <v-select :items="['Random', 'Desc','Asc']"
+                  v-model="order"
+                  label="Order"
+                  attach></v-select>
+          </v-flex>
+          <v-flex xs6>
+             <v-select :items="['All', 'Static','Animated']"
+                  v-model="image_type"
+                  label="Type"
+                  attach></v-select>
+          </v-flex>
+        </v-layout>
+
+            <v-layout row wrap>
+
+              <v-flex
+                v-for="n in images"
+                :key="n.id"
+                xs4
+                d-flex
+              >
+                <v-hover>
+                  <v-card 
+                  slot-scope="{ hover }"
+                  color="grey lighten-4"
+                  flat tile class="d-flex">
+                    <v-img
+                      :src="n.url"
+                      lazy-src="https://picsum.photos/10/6"
+                      class="grey lighten-2"
+                      aspect-ratio="1"
+                    >
+
+        <v-layout
+                        align-end
+                        justify-center>
+                        <div v-if="n.vote">
+          <v-icon v-show="n.vote.value==0" color="red" size="35">thumb_down</v-icon>
+          <v-icon v-show="n.vote.value==1" color="green" size="35">thumb_up</v-icon>
+          </div>
+          <v-icon v-show="n.favourite" color="red" size="35">mdi-heart</v-icon>
+        </v-layout>
+
+                    <v-expand-transition>
+                      <div
+                        v-if="hover"
+                        class="d-flex transition-fast-in-fast-out white darken-2 v-card--reveal display-3 white--text"
+                        style="height: 100%;"
+                      >
+                        <v-btn color="green" large @click="favouriteImage(n.id)" >
+                          Fav it</v-btn>
+                      </div>
+                    </v-expand-transition>
+                    <v-layout
+                        slot="placeholder"
+                        fill-height
+                        align-center
+                        justify-center
+                        ma-0
+                      >
+                      <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                    </v-layout>
+                  </v-img>
+                </v-card>
+              </v-hover>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  <div>
+
+      <v-card>
+        <v-layout  wrap align-center>
+          <v-flex xs10>
+             <v-pagination
+             v-show="order!='Random'" 
+                v-model="page"
+                :length="getNumPages"
+              ></v-pagination>
+          </v-flex>
+        </v-layout>
+        <v-layout  wrap align-center>
+          <v-flex xs4 offset-xs1>
+             <v-select :items="[9, 18,80]"
+                  v-model="limit"
+                  label="Per Page"
+                  attach></v-select>
+          </v-flex>
+
+          <v-flex xs6>
+            <v-btn color="blue"  v-show="order=='Random'" large @click="nextBtn"><v-icon>refresh</v-icon> &nbsp; 
+                        More</v-btn>
+          </v-flex>
+        </v-layout>
+      </v-card>
+    </div>
+  </v-card>
+</template>
+<script>
+  export default {
+    name: 'search',
+    components: {
+    },
+    data() {
+      return {
+          images: [],
+          search_order:'rand',
+          page: 1,
+          limit: 9,
+          image_type:"All",
+          order:"Random",
+          pagination_count: 0, //default until we get a result with the 'Pagination-Count' header in the response
+          pagination_page: 0
+      }
+    },
+    created() { 
+       this.getImages();
+    },
+    watch: {
+        page: function()
+        {
+          this.getImages();
+        },
+        limit: function()
+        {
+          this.getImages();
+        },
+        order: function()
+        {
+          this.getImages();
+        },
+        image_type: function()
+        {
+          this.getImages();
+        }
+    },
+    computed:{
+        getNumPages: function()
+        {
+          return Math.floor(this.pagination_count / this.limit) | 0;
+        }
+    },
+    methods:{
+      async getImages(){
+
+        let mime_map = {
+          All:'',
+          Static:'jpg,png',
+          Animated:'gif' }
+
+        let result = await this.$store.dispatch('TheCatAPI/getImages',{
+            limit: this.limit,
+            mime_types: mime_map[this.image_type],
+            order: this.order,
+            size:"small",
+            page: this.page-1,
+            include_favourite: false,
+            include_vote: true,
+        }); 
+        this.images = result.data
+
+        this.pagination_count = result.headers['pagination-count'];
+        
+      },
+      async nextBtn()
+      {
+        this.page++;
+          await this.getImages();
+      },
+      async favouriteImage(image_id)
+      {
+          let result = await this.$store.dispatch('TheCatAPI/favouriteImage',{
+            image_id: image_id
+          }); 
+          let favourite_id = result.data.id;
+
+          for(var i=0;i<this.images.length;i++)
+          {
+            if(this.images[i].id==image_id)
+            {
+              console.log('hit ', i , image_id, this.images[i].favourite)
+              this.images[i].favourite = {id: favourite_id}
+            }
+          }
+      }
+    }
+  }
+  </script>
+<style>
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: .8;
+  position: absolute;
+  width: 100%;
+}
+</style>
