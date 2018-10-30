@@ -84,7 +84,7 @@
   <v-layout>
     <v-flex xs12 sm6 offset-sm3>
           <v-container grid-list-sm fluid>
-            <h3>This site was made with Vuejs & Vuetify</h3><h3><a href="https://forum.thatapiguy.com/" target="_blank">You can fork it on Github</a></h3>
+            <h3>This site was made with Vuejs & Vuetify</h3><h3><a href="https://github.com/adenforshaw/thecatapi-website" target="_blank">You can fork it on Github</a></h3>
           </v-container>
     </v-flex>
   </v-layout>
