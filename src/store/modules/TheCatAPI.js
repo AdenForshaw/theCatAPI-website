@@ -4,32 +4,39 @@ import axios from 'axios'
 
 Vue.use(Vuex);
 
-const SET_IMAGES = 'SET_IMAGES';
-const SET_SUB_ID = 'SET_SUB_ID';
-const SET_API_KEY = 'SET_API_KEY';
+const SET_IMAGES          = 'SET_IMAGES';
+const SET_SUB_ID          = 'SET_SUB_ID';
+const SET_CATEGORIES      = 'SET_CATEGORIES';
+const SET_API_KEY         = 'SET_API_KEY';
 const SET_LAST_FAVOURITED = 'SET_LAST_FAVOURITED';
-const SET_FAVOURITES = 'SET_FAVOURITES';
+const SET_FAVOURITES      = 'SET_FAVOURITES';
 
 axios.defaults.baseURL = "https://api.thecatapi.com/"
-//axios.defaults.baseURL = "http://localhost:4009"
-// axios.interceptors.response.use(null, function(error) {
-//   console.warn('Error status', error.response.status);
-//   return Promise.reject(error);
-// });
-const applySubID= function (sub_id, params)
-    {
-        if(!params)params = {}
 
-        if(sub_id)params.sub_id = sub_id
-        return params;
-    }
+
+//axios.defaults.baseURL = "http://localhost:4009"
+
+ axios.interceptors.response.use(null, function(error) {
+   console.warn('Error status', error.response.status);
+   return Promise.reject(error);
+ });
+
+const applySubID = function (sub_id, params)
+{
+    if(!params)params = {}
+
+    if(sub_id)params.sub_id = sub_id
+    return params;
+}
+
 const createDataForm = function(data) {
     let formData = new FormData();
     for(let prop in data){
-        formData.append(prop, data[prop]); //JSON.stringify()
+        formData.append(prop, data[prop]);
     }
     return formData;
 }
+
 const merchants = {
   namespaced: true,
   state: {
@@ -37,11 +44,14 @@ const merchants = {
     images: null,
     api_key: "DEMO-API-KEY", // Swap this out with the one from the email sent after signing up
     last_favourited: null,
-    favourites:null
+    favourites:null,
+    categories: []
   },
   mutations: {
-    SET_SUB_ID(state, data)
-    {
+    SET_CATEGORIES(state, data){
+      state.categories = data
+    },
+    SET_SUB_ID(state, data){
       state.sub_id = data
     },
     SET_IMAGES(state, data) {
@@ -69,6 +79,9 @@ const merchants = {
     },
     lastFavourited(state) {
       return state.last_favourited;
+    },
+    categories(state) {
+      return state.categories;
     }
   },
   actions: {
@@ -103,6 +116,26 @@ const merchants = {
         throw new Error(error)
       }
     },
+
+    async searchImages({
+      dispatch,
+      rootGetters,
+      commit
+    }, query) {
+      try {
+           // add x-api-key as header
+        axios.defaults.headers.common['x-api-key'] = rootGetters['TheCatAPI/apiKey']
+        let response =  await axios.get('/v1/images/search',{
+            params: applySubID(rootGetters['TheCatAPI/subID'], query)
+          }
+        );
+        commit(SET_IMAGES,response.data)
+        return response;
+      } catch (error) {
+        throw new Error(error)
+      }
+    },
+
     async getImage({
       dispatch,
       rootGetters
@@ -119,17 +152,14 @@ const merchants = {
         throw new Error(error.response.data.message)
       }
     },
-    async getImages({
+    async getCategories({
       dispatch,
-      rootGetters
+      rootGetters,
+      commit
     }, query) {
       try {
-          // add x-api-key as header
-        axios.defaults.headers.common['x-api-key'] = rootGetters['TheCatAPI/apiKey']
-        let response = await axios.get('/v1/images/search', {
-            params: applySubID(rootGetters['TheCatAPI/subID'], query)
-          });
-        
+        let response = await axios.get('/v1/categories/', {});
+        commit(SET_FAVOURITES,response.data)
         return response;
       } catch (error) {
         throw new Error(error.response.data.message)

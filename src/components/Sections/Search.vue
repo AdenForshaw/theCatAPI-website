@@ -41,6 +41,17 @@
           </v-flex>
         </v-layout>
 
+
+        <v-layout row wrap align-center>
+          <v-flex xs12>
+             <v-select :items="categories"
+                  item-text="name"
+                  v-model="selected_category"
+                  label="Category"
+                  attach></v-select>
+          </v-flex>
+        </v-layout>
+
             <v-layout row wrap>
 
               <v-flex
@@ -60,7 +71,6 @@
                       class="grey lighten-2"
                       aspect-ratio="1"
                     >
-
         <v-layout
                         align-end
                         justify-center>
@@ -142,10 +152,14 @@
           image_type:"All",
           order:"Random",
           pagination_count: 0, //default until we get a result with the 'Pagination-Count' header in the response
-          pagination_page: 0
+          pagination_page: 0,
+          default_category: {id:-1,name: "None"},
+          selected_category:{id:-1, name:"None"},
+          categories:[]
       }
     },
     created() { 
+      this.getCategories();
        this.getImages();
     },
     watch: {
@@ -164,6 +178,11 @@
         image_type: function()
         {
           this.getImages();
+        },
+        selected_category: function()
+        {
+          this.resetPagination();
+          this.getImages();
         }
     },
     computed:{
@@ -175,20 +194,24 @@
     methods:{
       async getImages(){
 
+        console.log("getImages", this.selected_category)
         let mime_map = {
           All:'',
           Static:'jpg,png',
           Animated:'gif' }
 
-        let result = await this.$store.dispatch('TheCatAPI/getImages',{
+        let query_params = {
             limit: this.limit,
             mime_types: mime_map[this.image_type],
             order: this.order,
             size:"small",
             page: this.page-1,
-            include_favourite: false,
-            include_vote: true,
-        }); 
+            /*include_favourite: false,
+            include_vote: true,*/
+        }
+        if(this.selected_category!='None')query_params.category_ids = this.getCategoryIdFromName(this.selected_category);
+
+        let result = await this.$store.dispatch('TheCatAPI/searchImages',query_params); 
         this.images = result.data
 
         this.pagination_count = result.headers['pagination-count'];
@@ -214,6 +237,27 @@
               this.images[i].favourite = {id: favourite_id}
             }
           }
+      },
+      async getCategories(){
+        let result = await this.$store.dispatch('TheCatAPI/getCategories',{ }); 
+        let loaded_categories = result.data
+        loaded_categories.unshift(this.default_category)
+        this.categories = loaded_categories
+        console.log("categories", this.categories)
+      },
+      resetPagination()
+      {
+        this.page=1
+      },
+      getCategoryIdFromName(name)
+      {
+        for(var i=0;i<this.categories.length;i++)
+        {
+          if(this.categories[i].name == name)
+          {
+            return this.categories[i].id
+          }
+        }
       }
     }
   }

@@ -119,7 +119,7 @@
             }); 
         this.current_image = result.data;
           }else{
-            result = await this.$store.dispatch('TheCatAPI/getImages',{
+            result = await this.$store.dispatch('TheCatAPI/searchImages',{
                 limit:1,
                 size:"full",
                 include_favourite: true,
