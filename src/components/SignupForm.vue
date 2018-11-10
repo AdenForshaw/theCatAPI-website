@@ -11,7 +11,7 @@
     >
       <v-flex tag="h1" class="headline">Signup for an API key </v-flex>
       <br>
-      <v-card-text class="text-md-left">It's completely free, email is only be used to send you an API Key & your stats, and you can use the API as much as you like. </v-card-text>
+      <v-card-text class="text-md-left">It's completely free, email is only be used to send you an API Key & your stats, and you can use the API as much as you like. No Spam Ever.</v-card-text>
     </v-card>
 
         <h1>

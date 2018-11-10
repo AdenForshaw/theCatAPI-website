@@ -10,7 +10,9 @@
       <v-flex tag="h1" class="headline">Awesome! You've been sent an email with your API Key</v-flex>
 
         <div id="thankyou_text">
-            I'm really looking forward to seeing what you make with the API. If there's anything you need, or if you've got any feedback then please don't hesitate to email directly - Aden Forshaw (Aden@ThatAPIguy.com)
+            I'm really looking forward to seeing what you make with the API.
+            If there's anything you need then please don't hesitate to email me directly
+            <p><small>Aden@ThatAPIguy.com</small></p>
         </div>
     </v-layout>
     </v-flex>
