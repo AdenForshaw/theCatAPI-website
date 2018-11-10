@@ -49,19 +49,19 @@
     </v-tabs>
   
     <v-tabs-items v-model="model">
-      <v-tab-item id="tab-1">
+      <v-tab-item value="tab-1">
         <Vote/>
       </v-tab-item>
-      <v-tab-item id="tab-2">
+      <v-tab-item value="tab-2">
         <Search/>
       </v-tab-item>
-      <v-tab-item id="tab-3">
+      <v-tab-item value="tab-3">
         <Favourites/>
       </v-tab-item>
-      <v-tab-item id="tab-4">
+      <v-tab-item value="tab-4">
         <Upload/>
       </v-tab-item>
-      <v-tab-item id="tab-5">
+      <v-tab-item value="tab-5">
         <SubID/>
       </v-tab-item>
     </v-tabs-items>
@@ -69,6 +69,7 @@
     </v-flex>
   </v-layout>
   </div>
+
 
 <div class="footer-controls">
   <v-layout>
@@ -88,6 +89,10 @@
           </v-container>
     </v-flex>
   </v-layout>
+</div>
+    <CodeExamples/>
+    <div>
+
   <v-layout>
     <v-flex xs12 sm6 offset-sm3>
           <v-container grid-list-sm fluid>
@@ -96,8 +101,7 @@
           </v-container>
     </v-flex>
   </v-layout>
-</div>
-
+    </div>
   </v-container>
 </template>
 
@@ -107,10 +111,11 @@
   import Favourites from '../components/Sections/Favourites'
   import Upload from '../components/Sections/Upload'
   import SubID from '../components/Sections/SubID'
+  import CodeExamples from '../components/CodeExamples'
 
   export default {
     components: {
-      Vote,Search,Favourites,Upload,SubID
+      Vote,Search,Favourites,Upload,SubID,CodeExamples
     },
     created()
     {

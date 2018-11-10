@@ -14,7 +14,7 @@
             v-for="item in items"
             :key="item.title"
             avatar
-            @click="itemSelected"
+            @click="itemSelected(item)"
           >
 
             <v-list-tile-content>
@@ -33,8 +33,11 @@
     data () {
       return {
         items: [
-          { title: '-> Github: Discord Bot Node.JS', url: 'https://github.com/AdenForshaw/theDogAPI-discord-bot' },
-          { title: '-> Github: Discord Bot using Commando', url: 'https://github.com/AdenForshaw/theCatAPI-discord-commando-bot' }
+          { title: 'Vanilla JS: Load an Image', url: 'https://jsfiddle.net/adenF/njf4vts0/' },
+          { title: 'Vanilla JS: Upload an Image', url: 'https://jsfiddle.net/adenF/6r98t5wj/' },
+          { title: 'Node.JS: Discord Bot', url: 'https://github.com/AdenForshaw/theDogAPI-discord-bot' },
+          { title: 'Node.JS: Discord Bot using Commando', url: 'https://github.com/AdenForshaw/theCatAPI-discord-commando-bot' },
+          { title: 'VueJS: The code for this site', url: 'https://github.com/AdenForshaw/theCatAPI-website' },
         ]
       }
     },
@@ -45,8 +48,8 @@
         this.message = error;
         this.modalshow = !this.modalshow;
       },
-      async itemSelected() {
-
+      async itemSelected(item) {
+        window.open(item.url, '_blank');
       }
 
     }

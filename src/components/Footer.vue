@@ -10,7 +10,7 @@
       tile
     >
       <v-card-actions class="grey darken-3 justify-center">
-        <p><strong>Created by Aden Forshaw - <a href="https://thatapiguy.com">ThatAPIGuy.com</a></strong></p> | 
+        <p><strong>Created by Aden Forshaw - <a href="https://thatapiguy.com">ThatAPIGuy.com</a></strong></p> 
       </v-card-actions>
       
     </v-card>
