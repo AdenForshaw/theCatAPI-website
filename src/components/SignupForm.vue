@@ -104,6 +104,7 @@
         this.title = title;
         this.message = error;
         this.modalshow = !this.modalshow;
+        this.loading = false;
       },
       async submitLogIn() {
           if(this.email.length<4){this.errorModal('Need an Email','Need somewhere to send the API Key');return;}
@@ -120,21 +121,26 @@
         }
         try {
           await scope.$store.dispatch('TheCatAPI/signup', userCredentials)
-
           scope.$router.push('/thanks')
         } catch (error) {
-          let message;
+          let message, title = "";
           switch(error.message){
             case "INVALID_CREDENTIALS":
-             message ="Account not found";
+             title ="Account not found";
             break;
             case "INVALID_PASSWORD":
-              message = "Wrong password";
+              title = "Wrong password";
+            break;
+            case "DUPLICATE_EMAIL":
+             title ="Duplicate email";
+              message= "Looks like you've already signed up with that Email. Please use another for now.";
             break;
             default:
+            title = "Error"
               message=error.message;
               break;
           }
+          this.errorModal(title,message)
           scope.$emit('error', message);        
         }
       }

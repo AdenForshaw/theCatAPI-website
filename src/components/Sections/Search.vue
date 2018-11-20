@@ -158,9 +158,9 @@
           categories:[]
       }
     },
-    created() { 
+    mounted() { 
       this.getCategories();
-       this.getImages();
+      this.getImages();
     },
     watch: {
         page: function()
@@ -206,8 +206,6 @@
             order: this.order,
             size:"small",
             page: this.page-1,
-            /*include_favourite: false,
-            include_vote: true,*/
         }
         if(this.selected_category!='None')query_params.category_ids = this.getCategoryIdFromName(this.selected_category);
 

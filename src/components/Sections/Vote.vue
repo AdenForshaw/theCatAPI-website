@@ -19,7 +19,7 @@
                   :src="current_image.url"
                   max-height="500px"
                   contain
-                  :lazy-src="current_image.placeholder"
+                  lazy-src="https://picsum.photos/10/6"
                 >
         <v-layout
                         align-end
@@ -88,7 +88,7 @@
     data() {
       return {
         show_favourite: true,
-          current_image: {url:"", placeholder:"https://picsum.photos/10/6"},//`https://api.thecatapi.com/v1/images/search?format=src`
+          current_image: {url:"./meta-tag-image.png", placeholder:""},//`https://api.thecatapi.com/v1/images/search?format=src`
       }
     },
     created() { 
@@ -115,15 +115,14 @@
           if(image_id)
           {
               result = await this.$store.dispatch('TheCatAPI/getImage',{
-                image_id: image_id
+                image_id: image_id,
+                size:"full",
             }); 
         this.current_image = result.data;
           }else{
             result = await this.$store.dispatch('TheCatAPI/searchImages',{
                 limit:1,
                 size:"full",
-                include_favourite: true,
-                include_vote: true,
             }); 
         this.current_image = result.data[0]
           }
@@ -148,18 +147,18 @@
       },
       async favouriteImage()
       {
-          let result = await this.$store.dispatch('TheCatAPI/favouriteImage',{
-            image_id: this.current_image.id
-          }); 
+        let result = await this.$store.dispatch('TheCatAPI/favouriteImage',{
+          image_id: this.current_image.id
+        }); 
         this.current_image.favourite = {id: result.data.id};
         this.showFavouriteBtn()
       }
       ,
       async unfavouriteImage()
       {
-          await this.$store.dispatch('TheCatAPI/unFavouriteImage',{
-            favourite_id: this.current_image.favourite.id
-          }); 
+        await this.$store.dispatch('TheCatAPI/unFavouriteImage',{
+          favourite_id: this.current_image.favourite.id
+        }); 
         this.current_image.favourite = null;
         this.showFavouriteBtn()
       }

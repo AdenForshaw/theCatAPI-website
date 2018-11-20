@@ -263,9 +263,8 @@ const merchants = {
     }, params) {
       try {
           // add x-api-key as header
-
         axios.defaults.headers.common['x-api-key'] = rootGetters['TheCatAPI/apiKey']
-        let response = await axios.delete('/v1/favourites/'+params.favourite_id+"?sub_id="+rootGetters['TheCatAPI/subID']
+        let response = await axios.delete('/v1/favourites/'+params.favourite_id
         );
         
         commit(SET_LAST_FAVOURITED, params.image_id)
