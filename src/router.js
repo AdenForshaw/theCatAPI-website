@@ -39,10 +39,10 @@ const router =  new Router({
       component: () => import('./views/TermsConditions.vue')
     },
     {
-      path: '/code',
-      name: 'code',
-      meta: { gtm: 'CodeExamples' },
-      component: () => import('./views/CodeExamples.vue')
+      path: '/docs.html',
+      name: 'docs',
+      meta: { gtm: 'Docs' },
+      component: () => import('./views/Docs.vue')
     }
   ]
 })

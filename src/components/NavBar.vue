@@ -10,7 +10,7 @@
       <v-btn flat to="/">Home</v-btn>
       <v-btn flat href="https://thatapiguy.com/the-cat-api/" target="_blank">About</v-btn>
       <v-btn flat href="https://forum.thatapiguy.com/" target="_blank">Forum</v-btn>
-      <v-btn flat href="https://documenter.getpostman.com/view/5578104/RWgqUxxh" target="_blank">Docs</v-btn>
+      <v-btn flat href="https://docs.thecatapi.com/" target="_blank">Docs</v-btn>
       <v-btn flat href="https://trello.com/b/ddUlP8lJ/that-api-guy-public" target="_blank">Roadmap</v-btn>
       <v-btn flat to="/signup">Signup</v-btn>
     </v-toolbar-items>
@@ -24,7 +24,7 @@
               <v-list-tile href="https://thatapiguy.com/the-cat-api/" target="_blank">
                 <v-list-tile-title style="color:#595959;">About</v-list-tile-title>
               </v-list-tile>
-              <v-list-tile href="https://documenter.getpostman.com/view/5578104/RWgqUxxh" target="_blank">
+              <v-list-tile href="https://docs.thecatapi.com/" target="_blank">
                 <v-list-tile-title style="color:#595959;">Documentation</v-list-tile-title>
               </v-list-tile>
               <v-list-tile href="https://trello.com/b/ddUlP8lJ/that-api-guy-public" target="_blank">

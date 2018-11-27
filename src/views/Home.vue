@@ -3,6 +3,7 @@
   <div id="main">
     <div z-index="800" id="title-text">
       <h1>Cat pictures as a Service! Everyday is Caturday.</h1>
+      
       <br>
       <p>A public service API for all your Kitty needs - Already used by <strong>thousands of developers.</strong></p>
       <v-btn color="blue" large dark to="/signup">Signup for Free</v-btn>
