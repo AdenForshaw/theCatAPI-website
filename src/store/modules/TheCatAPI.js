@@ -7,6 +7,7 @@ Vue.use(Vuex);
 const SET_IMAGES          = 'SET_IMAGES';
 const SET_SUB_ID          = 'SET_SUB_ID';
 const SET_CATEGORIES      = 'SET_CATEGORIES';
+const SET_BREEDS           = 'SET_BREEDS';
 const SET_API_KEY         = 'SET_API_KEY';
 const SET_LAST_FAVOURITED = 'SET_LAST_FAVOURITED';
 const SET_FAVOURITES      = 'SET_FAVOURITES';
@@ -45,7 +46,8 @@ const merchants = {
     api_key: "DEMO-API-KEY", // Swap this out with the one from the email sent after signing up
     last_favourited: null,
     favourites:null,
-    categories: []
+    categories: [],
+    breeds:[]
   },
   mutations: {
     SET_CATEGORIES(state, data){
@@ -66,6 +68,9 @@ const merchants = {
     SET_FAVOURITES(state, data) {
       state.favourites = data
     },
+    SET_BREEDS(state, data) {
+      state.breeds = data
+    }
   },
   getters: {
     images(state) {
@@ -158,8 +163,8 @@ const merchants = {
       commit
     }, query) {
       try {
-        let response = await axios.get('/v1/categories/', {});
-        commit(SET_FAVOURITES,response.data)
+        let response = await axios.get('/v1/categories/');
+        commit(SET_CATEGORIES,response.data)
         return response;
       } catch (error) {
         throw new Error(error.response.data.message)
@@ -285,7 +290,23 @@ const merchants = {
       } catch (error) {
         throw new Error(error.response.data.message)
       }
-    }
+    },
+
+    async getBreeds({
+      dispatch,
+      rootGetters,
+      commit
+    }, query) {
+      try {
+           // add x-api-key as header
+        axios.defaults.headers.common['x-api-key'] = rootGetters['TheCatAPI/apiKey']
+        let response =  await axios.get('/v1/breeds', {params: query});
+        commit(SET_BREEDS,response.data)
+        return response;
+      } catch (error) {
+        throw new Error(error)
+      }
+    },
     
   }
 }

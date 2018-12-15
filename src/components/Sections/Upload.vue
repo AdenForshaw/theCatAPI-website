@@ -1,7 +1,7 @@
 <template>
       <v-card>
         <br>
-              <p>Images uploaded here are only seen in this Demo account, and will be <strong>deleted</strong>.</p><p>Any with you upload using your API Key will stay, however they must comply with the <router-link to="/privacy"> upload guidelines</router-link> or face deletion.</p>
+              <p>Any uploads must comply with the <router-link to="/privacy"> upload guidelines</router-link> or face deletion.</p>
           <v-container grid-list-sm fluid>
             <v-layout row wrap>
 

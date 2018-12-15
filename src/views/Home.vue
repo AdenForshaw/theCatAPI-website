@@ -2,6 +2,7 @@
   <v-container>
   <div id="main">
     <div z-index="800" id="title-text">
+      <v-img src="https://cdn2.thecatapi.com/logos/thecatapi_256xW.png" height=256 contain></v-img>
       <h1>Cat pictures as a Service! Everyday is Caturday.</h1>
       
       <br>
@@ -28,6 +29,11 @@
         Vote
       </v-tab>
       <v-tab
+          href="#tab-breeds"
+        ripple>
+        Breeds
+      </v-tab>
+      <v-tab
           href="#tab-2"
         ripple>
         Search
@@ -42,16 +48,14 @@
         ripple>
         Upload
       </v-tab>
-      <v-tab
-          href="#tab-5"
-        ripple>
-        sub_id
-      </v-tab>
     </v-tabs>
   
     <v-tabs-items v-model="model">
       <v-tab-item value="tab-1">
         <Vote/>
+      </v-tab-item>
+      <v-tab-item value="tab-breeds">
+        <Breeds/>
       </v-tab-item>
       <v-tab-item value="tab-2">
         <Search/>
@@ -61,9 +65,6 @@
       </v-tab-item>
       <v-tab-item value="tab-4">
         <Upload/>
-      </v-tab-item>
-      <v-tab-item value="tab-5">
-        <SubID/>
       </v-tab-item>
     </v-tabs-items>
 
@@ -77,8 +78,10 @@
     <v-flex xs12 sm6 offset-sm3>
           <v-container grid-list-sm fluid>
             <h3>Found a bug, or need help using it?</h3>
-            <p>Just post your question, feedback, or code issue over in the Forum and i'll reply to you as soon as possible.</p>
+            <p>Just post your question, feedback, or code issue over in the Forum</p>
+            <p>There's lots of code examples in the documentation</p>
     <v-btn color="blue" href="https://forum.thatapiguy.com/" target="_blank" dark>To the Forum</v-btn>
+    <v-btn color="blue" href="https://docs.thecatapi.com/" target="_blank" dark>Read the Docs</v-btn>
           </v-container>
     </v-flex>
   </v-layout>
@@ -112,11 +115,12 @@
   import Favourites from '../components/Sections/Favourites'
   import Upload from '../components/Sections/Upload'
   import SubID from '../components/Sections/SubID'
+  import Breeds from '../components/Sections/Breeds'
   import CodeExamples from '../components/CodeExamples'
 
   export default {
     components: {
-      Vote,Search,Favourites,Upload,SubID,CodeExamples
+      Vote,Search,Favourites,Upload,Breeds,CodeExamples
     },
     created()
     {

@@ -1,5 +1,7 @@
 <template>
-<v-app>
+<v-app style="
+    background: #FFF;
+  ">
   <div id="app">
     <NavBar />
     <div id='content'>

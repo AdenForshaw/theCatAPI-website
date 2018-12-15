@@ -39,7 +39,7 @@ const router =  new Router({
       component: () => import('./views/TermsConditions.vue')
     },
     {
-      path: '/docs.html',
+      path: '/docs.html', // Legacy reason, page on old website is still deeplinked from so many other sites it gets a lot of traffic
       name: 'docs',
       meta: { gtm: 'Docs' },
       component: () => import('./views/Docs.vue')

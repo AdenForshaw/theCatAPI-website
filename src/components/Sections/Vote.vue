@@ -15,7 +15,7 @@
                 <v-hover>
               <v-card align-content-center
                   slot-scope="{ hover }">
-                <v-img
+                <img class="center"
                   :src="current_image.url"
                   max-height="500px"
                   contain
@@ -41,6 +41,7 @@
 
                         <v-btn color="red" large @click="unfavouriteImage()" v-show="!show_favourite" >
                           Un-Fav it</v-btn>
+
                       </div>
                     </v-expand-transition>
                     <v-layout
@@ -54,7 +55,6 @@
                   
             </v-layout>
 
-                </v-img>
               </v-card>
 
               </v-hover>
@@ -165,3 +165,19 @@
     }
   }
   </script>
+  <style scoped>
+  img {
+  display: block;
+  max-width:100%;
+  max-height:600px;
+  width: auto;
+  height: auto;
+  margin-left:auto;
+margin-right:auto;
+}
+.center img {        
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+</style>

@@ -43,11 +43,18 @@
 
 
         <v-layout row wrap align-center>
-          <v-flex xs12>
+          <v-flex xs6>
              <v-select :items="categories"
                   item-text="name"
                   v-model="selected_category"
                   label="Category"
+                  attach></v-select>
+          </v-flex>
+          <v-flex xs6>
+             <v-select :items="breeds"
+                  item-text="name"
+                  v-model="selected_breed"
+                  label="Breed"
                   attach></v-select>
           </v-flex>
         </v-layout>
@@ -81,16 +88,15 @@
           <v-icon v-show="n.favourite" color="red" size="35">mdi-heart</v-icon>
         </v-layout>
 
-                    <v-expand-transition>
                       <div
                         v-if="hover"
-                        class="d-flex transition-fast-in-fast-out white darken-2 v-card--reveal display-3 white--text"
-                        style="height: 100%;"
+                        class="d-flex transition-fast-in-fast-out  darken-2 v-card--reveal display-3 white--text"
+                        style="height: 50px;"
                       >
-                        <v-btn color="green" large @click="favouriteImage(n.id)" >
-                          Fav it</v-btn>
+                        <v-btn color="white" large @click="favouriteImage(n.id)" v-show="!n.favourite" >
+          <v-icon color="red">mdi-heart</v-icon>
+                          </v-btn>
                       </div>
-                    </v-expand-transition>
                     <v-layout
                         slot="placeholder"
                         fill-height
@@ -155,10 +161,14 @@
           pagination_page: 0,
           default_category: {id:-1,name: "None"},
           selected_category:{id:-1, name:"None"},
-          categories:[]
+          categories:[],
+          breeds:[],
+          default_breed: {id:-1,name: "None"},
+          selected_breed:{id:-1, name:"None"}
       }
     },
     mounted() { 
+      this.getBreeds();
       this.getCategories();
       this.getImages();
     },
@@ -180,6 +190,11 @@
           this.getImages();
         },
         selected_category: function()
+        {
+          this.resetPagination();
+          this.getImages();
+        },
+        selected_breed: function()
         {
           this.resetPagination();
           this.getImages();
@@ -208,6 +223,7 @@
             page: this.page-1,
         }
         if(this.selected_category!='None')query_params.category_ids = this.getCategoryIdFromName(this.selected_category);
+        if(this.selected_breed!='None')query_params.breed_ids = this.getBreedIdFromName(this.selected_breed);
 
         let result = await this.$store.dispatch('TheCatAPI/searchImages',query_params); 
         this.images = result.data
@@ -243,6 +259,13 @@
         this.categories = loaded_categories
         console.log("categories", this.categories)
       },
+      async getBreeds(){
+        let result = await this.$store.dispatch('TheCatAPI/getBreeds',{ }); 
+        let loaded_breeds = result.data
+        loaded_breeds.unshift(this.default_breed)
+        this.breeds = loaded_breeds
+        console.log("categories", this.breeds)
+      },
       resetPagination()
       {
         this.page=1
@@ -254,6 +277,16 @@
           if(this.categories[i].name == name)
           {
             return this.categories[i].id
+          }
+        }
+      },
+      getBreedIdFromName(name)
+      {
+        for(var i=0;i<this.breeds.length;i++)
+        {
+          if(this.breeds[i].name == name)
+          {
+            return this.breeds[i].id
           }
         }
       }
