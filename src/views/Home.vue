@@ -2,7 +2,7 @@
   <v-container>
   <div id="main">
     <div z-index="800" id="title-text">
-      <v-img src="https://cdn2.thecatapi.com/logos/thecatapi_256xW.png" height=256 contain></v-img>
+      <v-img src="https://cdn2.thecatapi.com/logos/thecatapi_256xW.png" height=128 contain></v-img>
       <h1>Cat pictures as a Service! Everyday is Caturday.</h1>
       
       <br>
@@ -36,7 +36,7 @@
       <v-tab
           href="#tab-2"
         ripple>
-        Search
+        Images/Search
       </v-tab>
       <v-tab
           href="#tab-3"
@@ -114,7 +114,6 @@
   import Search from '../components/Sections/Search'
   import Favourites from '../components/Sections/Favourites'
   import Upload from '../components/Sections/Upload'
-  import SubID from '../components/Sections/SubID'
   import Breeds from '../components/Sections/Breeds'
   import CodeExamples from '../components/CodeExamples'
 

@@ -76,7 +76,7 @@
           this.selected_breed = this.breeds[10]
 
         },
-      async getImages(image_id){
+      async getImages(){
         let result = null;
         result = await this.$store.dispatch('TheCatAPI/searchImages',{
             limit:8,

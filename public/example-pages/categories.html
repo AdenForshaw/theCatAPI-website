@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-content>
+        <v-card>
+        <v-container grid-list-sm fluid>
+            <v-layout row wrap align-center>
+                <!-- Order selection - Randpm, Descending, or Ascending -->
+                <v-flex xs6>
+                    <v-select :items="categories"
+                            item-text="name"
+                            v-model="selected_category"
+                            label="Categories"
+                            return-object
+                            attach></v-select>
+                    </v-select>
+                </v-flex>
+            </v-layout>
+            <v-layout row wrap>
+                <!-- for loop through the results from the API -->
+                <v-flex
+                    v-for="n in images"
+                    :§="n.id"
+                    xs4
+                    d-flex>
+                    <v-card 
+                        color="grey lighten-4"
+                        flat tile class="d-flex">
+                        <v-img
+                            :src="n.url"
+                            lazy-src="https://picsum.photos/10/6"
+                            class="grey lighten-2"
+                            aspect-ratio="1">
+                        </v-img>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+            <br>
+            <!-- Pagination control -->
+                <v-layout  wrap align-center>
+                    <v-flex xs11>
+
+        <v-card-title primary-title>
+                <div>Page</div>
+          </v-card-title>
+                        <v-pagination xs9
+                        v-show="order!='Rand'" 
+                        v-model="page"
+                        :length="getNumPages"
+                        ></v-pagination>
+                    </v-flex>
+                </v-layout>
+                <v-layout  wrap align-center>
+                    <v-flex xs4>
+                        <v-select :items="[3,6,9]"
+                            v-model="limit"
+                            label="Limit"
+                            attach></v-select>
+                    </v-flex>
+                    <!-- Next btn only shown when Rand is select as it can't be paginated -->
+                    <v-flex xs6>
+                        <v-btn color="blue"  v-show="order=='Rand'" large @click="nextBtn">
+                            <v-icon>refresh</v-icon> &nbsp; More
+                        </v-btn>
+                    </v-flex>
+                </v-layout>
+                
+        </v-container>
+        </v-card>
+      </v-content>
+    </v-app>
+  </div>
+ 
+  <script>
+    new Vue({ 
+        el: '#app',
+        data: {
+            categories: [],
+            selected_category:{},
+            images: [],
+            order:'Desc',
+            page: 1,
+            limit: 3,
+            pagination_count: 0, //default until we get a result with the 'Pagination-Count' header in the response
+        },
+        created(){
+            this.getCategories();
+            //this.getImages();
+        } ,
+        watch: {
+            // if the user changes any of these values, then make a new request to the API
+            page: function()
+            {
+                this.getImages();
+            },
+            limit: function()
+            {
+                this.getImages();
+            },
+            order: function()
+            {
+                this.getImages();
+            },
+            selected_category: function()
+            {
+                console.log(this.selected_category)
+                this.getImages();
+            }
+        },
+        computed:{
+
+            getNumPages: function()
+            {
+            return Math.floor(this.pagination_count / this.limit) | 0;
+            }
+        },
+        methods:{
+
+            async nextBtn()
+            {
+                this.page++;
+                await this.getImages();
+            },
+
+            async getCategories()
+            {
+                try{
+                    axios.defaults.headers.common['x-api-key'] = "DEMO-API-KEY" // Replace this with your API Key, as it's set to defaults it will be used from now onwards
+                    
+                    let response = await axios.get('https://api.thecatapi.com/v1/categories/' ) 
+                    this.categories = response.data;
+                    console.log("-- ("+this.categories.length +") Categories from TheCatAPI.com")
+                    
+                    // pick one to display initially
+                    this.selected_category = this.categories[2]
+                }catch(err){
+                    console.log(err)
+                }
+            },
+            async getImages()
+            {
+                try{
+                    axios.defaults.headers.common['x-api-key'] = "DEMO-API-KEY" // Replace this with your API Key
+                    
+                    let query_params = {
+                        limit: this.limit,
+                        order: this.order,
+                        page: this.page-1,
+                        category_ids: this.selected_category.id
+                    }
+
+                    let response = await axios.get('https://api.thecatapi.com/v1/images/search', { params: query_params } ) 
+                    
+                    this.pagination_count = response.headers['pagination-count'];
+                    this.images = response.data 
+
+                    console.log("-- ("+this.images.length +") Images from TheCatAPI.com")
+                    console.log( this.pagination_count ,'images available for this query.')
+                    
+                }catch(err){
+                    console.log(err)
+                }
+            }
+        }
+    })
+  </script>
+</body>
+</html>

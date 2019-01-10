@@ -33,13 +33,14 @@
     data () {
       return {
         items: [
+          { title: 'VueJS: The code for this site', url: 'https://github.com/AdenForshaw/theCatAPI-website' },
+          { title: 'VueJS: Example pages', url: 'https://github.com/AdenForshaw/theCatAPI-website/public/example-pages' },
           { title: 'Vanilla JS: Load an Image', url: 'https://jsfiddle.net/adenF/njf4vts0/' },
           { title: 'Vanilla JS: Upload an Image', url: 'https://jsfiddle.net/adenF/6r98t5wj/' },
           { title: 'JQuery: Select between different Dog Breeds', url:"https://jsfiddle.net/adenF/g3s9yb12/1/"},
           { title: 'JQuery: Client side search for Dog Breeds', url:"https://jsfiddle.net/adenF/3g9j1h8d/"},
           { title: 'Node.JS: Discord Bot', url: 'https://github.com/AdenForshaw/theDogAPI-discord-bot' },
           { title: 'Node.JS: Discord Bot using Commando', url: 'https://github.com/AdenForshaw/theCatAPI-discord-commando-bot' },
-          { title: 'VueJS: The code for this site', url: 'https://github.com/AdenForshaw/theCatAPI-website' },
         ]
       }
     },
