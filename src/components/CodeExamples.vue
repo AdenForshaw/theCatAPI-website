@@ -34,7 +34,7 @@
       return {
         items: [
           { title: 'VueJS: The code for this site', url: 'https://github.com/AdenForshaw/theCatAPI-website' },
-          { title: 'VueJS: Example pages', url: 'https://github.com/AdenForshaw/theCatAPI-website/public/example-pages' },
+          { title: 'VueJS: Example pages', url: 'https://github.com/AdenForshaw/theCatAPI-website/tree/master/public/example-pages' },
           { title: 'Vanilla JS: Load an Image', url: 'https://jsfiddle.net/adenF/njf4vts0/' },
           { title: 'Vanilla JS: Upload an Image', url: 'https://jsfiddle.net/adenF/6r98t5wj/' },
           { title: 'JQuery: Select between different Dog Breeds', url:"https://jsfiddle.net/adenF/g3s9yb12/1/"},
