@@ -2,11 +2,11 @@
   <v-container>
   <div id="main">
     <div z-index="800" id="title-text">
-      <v-img src="https://cdn2.thecatapi.com/logos/thecatapi_256xW.png" height=128 contain></v-img>
-      <h1>Cat pictures as a Service! Everyday is Caturday.</h1>
+      <v-img :src="app_logo_url" height=128 contain></v-img>
+      <h1>{{app_title}} - {{app_strapline}}</h1>
       
       <br>
-      <p>A public service API for all your Kitty needs - Already used by <strong>thousands of developers.</strong></p>
+      <p>{{app_description}}</p>
       <v-btn color="blue" large dark to="/signup">Signup for Free</v-btn>
       <p><strong>Get your own API key & make your own App!</strong></p>
     </div>
@@ -81,7 +81,7 @@
             <p>Just post your question, feedback, or code issue over in the Forum</p>
             <p>There's lots of code examples in the documentation</p>
     <v-btn color="blue" href="https://forum.thatapiguy.com/" target="_blank" dark>To the Forum</v-btn>
-    <v-btn color="blue" href="https://docs.thecatapi.com/" target="_blank" dark>Read the Docs</v-btn>
+    <v-btn color="blue" :href="docs_url" target="_blank" dark>Read the Docs</v-btn>
           </v-container>
     </v-flex>
   </v-layout>
@@ -100,7 +100,7 @@
   <v-layout>
     <v-flex xs12 sm6 offset-sm3>
           <v-container grid-list-sm fluid>
-        <p><small><router-link to="/privacy">Privacy Policy</router-link> | <router-link to="/terms">Terms & Conditions</router-link> | <a href="https://documenter.getpostman.com/view/5578104/RWgqUxxh" target="_blank">Documentation</a></small></p>
+        <p><small><router-link to="/privacy">Privacy Policy</router-link> | <router-link to="/terms">Terms & Conditions</router-link> | <a :href="postman_url" target="_blank">Documentation</a></small></p>
 
           </v-container>
     </v-flex>
@@ -123,6 +123,7 @@
     },
     created()
     {
+      console.log(process.env.VUE_APP_NAME)
       // If there's an API Key in the query string (api_key) then use it in the App instead of DEMO-API-KEY
       if (this.$route.query.api_key)
       {
@@ -140,6 +141,12 @@
     data(){
       return {
         model: 'tab-1',
+        postman_url: process.env.VUE_APP_POSTMAN_URL,
+        docs_url: process.env.VUE_APP_DOCS_URL,
+        app_title: process.env.VUE_APP_TITLE,
+        app_strapline: process.env.VUE_APP_STRAPLINE,
+        app_description: process.env.VUE_APP_DESCRIPTION,
+        app_logo_url: process.env.VUE_APP_LOGO_URL
       }
     }
   }

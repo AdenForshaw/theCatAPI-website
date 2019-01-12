@@ -2,29 +2,29 @@
 <html lang="en">
   <head>
     <!-- Primary Meta Tags -->
-<title>TheCatAPI.com - Cats as a Service</title>
-<meta name="title" content="TheCatAPI.com - Cats as a Service">
-<meta name="description" content="A free public service REST API all about Cats, to train with when making your fancy new App, Website or Service. ">
+<title><%= process.env.VUE_APP_TITLE %> - <%= process.env.VUE_APP_STRAPLINE %></title>
+<meta name="title" content="<%= process.env.VUE_APP_TITLE %> - <%= process.env.VUE_APP_STRAPLINE %>">
+<meta name="description" content="<%= process.env.VUE_APP_DESCRIPTION %>">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://thecatapi.com/">
-<meta property="og:title" content="TheCatAPI.com - Cats as a Service">
-<meta property="og:description" content="A free public service REST API all about Cats, to train with when making your fancy new App, Website or Service. ">
-<meta property="og:image" content="https://thecatapi.com/meta-tag-image.png">
+<meta property="og:url" content="<%= process.env.VUE_APP_URL %>">
+<meta property="og:title" content="<%= process.env.VUE_APP_TITLE %> - <%= process.env.VUE_APP_STRAPLINE %>">
+<meta property="og:description" content="<%= process.env.VUE_APP_DESCRIPTION %>">
+<meta property="og:image" content="<%= process.env.VUE_APP_META_IMAGE_URL %>">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://thecatapi.com/">
-<meta property="twitter:title" content="TheCatAPI.com - Cats as a Service">
-<meta property="twitter:description" content="A free public service REST API all about Cats, to train with when making your fancy new App, Website or Service. ">
-<meta property="twitter:image" content="https://thecatapi.com/meta-tag-image.png">
+<meta property="twitter:url" content="<%= process.env.VUE_APP_URL %>">
+<meta property="twitter:title" content="<%= process.env.VUE_APP_TITLE %> - <%= process.env.VUE_APP_STRAPLINE %>">
+<meta property="twitter:description" content="<%= process.env.VUE_APP_DESCRIPTION %>">
+<meta property="twitter:image" content="<%= process.env.VUE_APP_META_IMAGE_URL %>">
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>TheCatAPI - Cats as a Service</title>
+    <title><%= process.env.VUE_APP_TITLE %> - <%= process.env.VUE_APP_STRAPLINE %></title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
     <script>
@@ -38,7 +38,7 @@
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but thecatapi-website doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong>We're sorry but the website doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->

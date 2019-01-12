@@ -52,7 +52,7 @@ export default router
 import VueGtm from 'vue-gtm';
 
 Vue.use(VueGtm, {
-  id: 'GTM-MP6RDDC', // Your GTM ID
+  id: process.env.VUE_APP_GTM_ID, // Your GTM ID
   enabled: true, 
   debug: false,
   vueRouter: router, 

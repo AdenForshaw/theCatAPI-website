@@ -12,7 +12,7 @@ const SET_API_KEY         = 'SET_API_KEY';
 const SET_LAST_FAVOURITED = 'SET_LAST_FAVOURITED';
 const SET_FAVOURITES      = 'SET_FAVOURITES';
 
-axios.defaults.baseURL = "https://api.thecatapi.com/"
+axios.defaults.baseURL = process.env.VUE_APP_API_ENDPOINT;// "https://api.thedogapi.com/"
 
 
 //axios.defaults.baseURL = "http://localhost:4009"

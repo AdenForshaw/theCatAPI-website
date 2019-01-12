@@ -16,10 +16,10 @@
         </v-card-title>
 
         <div id="thankyou_text">
-            The Interactive documentation can be found at <a href="https://docs.thecatapi.com/">https://Docs.TheCatAPI.com</a>
+            The Interactive documentation can be found at <a :href="docs_url">{{docs_url}}</a>
          </div>
         <div id="thankyou_text">
-            Or you can use the <a href="https://documenter.getpostman.com/view/5578104/RWgqUxxh">Postman Collection</a>
+            Or you can use the <a :href="postman_url">Postman Collection</a>
         </div>
       </v-card>
     </v-flex>
@@ -37,6 +37,8 @@
     },
     data() {
       return {
+        postman_url: process.env.VUE_APP_POSTMAN_URL,
+        docs_url: process.env.VUE_APP_DOCS_URL
       }
     },
   }
