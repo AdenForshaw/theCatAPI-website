@@ -22,23 +22,31 @@
       <v-carousel-item
         v-for="(item,i) in images"
         :key="i"
+        contain
         :src="item.url"
       ></v-carousel-item>
     </v-carousel>
             
-                    <v-card-title primary-title>
+                    <v-card-title>
+        <v-layout
+                        align-end
+                        justify-center>
                       <div>
                         <h3 class="headline mb-0">{{selected_breed.name}}</h3>
                         <div>{{selected_breed.description}}</div>
                         <div>---</div>
                         <div><i>{{selected_breed.temperament}}</i></div>
                         <div>{{selected_breed.origin}}</div>
+                        <div v-if="selected_breed.weight">{{selected_breed.weight.metric}} kgs</div>
+                        <div v-if="selected_breed.height">{{selected_breed.height.metric}} cm at the withers</div>
+                        <div v-if="selected_breed.life_span">{{selected_breed.life_span}} average life span</div>
                         <div></div>
                       </div>
+        </v-layout>
                     </v-card-title>
             
                     <v-card-actions>
-                      <v-btn :href="selected_breed.wikipedia_url" target="_blank" flat color="orange">Wikipedia</v-btn>
+                      <v-btn v-if="selected_breed.wikipedia_url" :href="selected_breed.wikipedia_url" target="_blank" flat color="orange">Wikipedia</v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-flex>

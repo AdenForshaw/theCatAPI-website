@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-content>
+        <v-container>
+
+            <v-layout >
+                
+        <v-flex xs12 sm6 md3>
+            <v-text-field
+              label="sub_id"
+              placeholder=""
+              v-model="sub_id"
+            ></v-text-field>
+          </v-flex>
+
+    <v-btn color="green" large @click="voteUp" >
+        <v-icon>thumb_up</v-icon>&nbsp; Love it</v-btn>
+<v-btn color="red" large @click="voteDown" >
+        <v-icon>thumb_down</v-icon>&nbsp; Nope it</v-btn>
+
+            </v-layout>
+
+            <v-layout row wrap>
+                <v-flex xs12 >
+                <v-card flat tile class="d-flex">
+                    <v-img :src="image.url" aspect-ratio="1">
+                    </v-img>
+                </v-card>
+                </v-flex>
+            </v-layout>
+
+
+            <v-layout row wrap>
+                <v-flex xs12 >
+  <v-data-table
+  :headers="headers"
+  :items="votes"
+  class="elevation-1"
+>
+  <template slot="items" slot-scope="props">
+    <td>{{ props.item.created_at }}</td>
+    <td class="text-xs-left">{{ props.item.image_id }}</td>
+    <td class="text-xs-left">{{ props.item.value }}</td>
+    <td>{{ props.item.sub_id }}</td>
+    <td>{{ props.item.country_code }}</td>
+  </template>
+</v-data-table>
+
+</v-flex>
+</v-layout>
+        </v-container>
+      </v-content>
+    </v-app>
+  </div>
+ 
+  <script>
+    new Vue({ 
+        el: '#app',
+        data: {
+          sub_id: "User-123",
+          image:{},
+          votes:[],
+            headers: [
+            { text: 'date' },
+            { text: 'image_id' },
+            { text: 'value' },
+            { text: 'sub_id' },
+            { text: 'country' }
+          ],
+        },
+        created(){
+            this.getImage();
+            this.getVotes();
+        } ,
+        methods:{
+            async getImage()
+            {
+                try{
+                    axios.defaults.headers.common['x-api-key'] = "DEMO-API-KEY" // Replace this with your API Key, as it's set to defaults it will be used from now onwards
+
+                    let response = await axios.get('https://api.thedogapi.com/v1/images/search', { params: { limit:1, size:"full" } } ) // Ask for 1 Image, at full resolution
+                    
+                    this.image = response.data[0] // the response is an Array, so just use the first item as the Image
+
+                    console.log("-- Image from TheDogAPI.com")
+                    console.log("id:", this.image.id)
+                    console.log("url:", this.image.url)
+
+                }catch(err){
+                    console.log(err)
+                }
+            },
+            async voteUp(){
+              let body = {
+                  image_id: this.image.id,
+                  sub_id: this.sub_id,
+                  value: 1 // Voting up (you like it) so send 1
+              }
+              let response = await axios.post('https://api.thedogapi.com/v1/votes', body ) // Send the body to create a Vote in your Account
+                    
+              await this.getImage();
+              await this.getVotes();
+            },
+            async voteDown(){
+
+              let body = {
+                  image_id: this.image.id,
+                  sub_id: this.sub_id,
+                  value: 0 // Voting down (you don't like) so send 0
+              }
+              let response = await axios.post('https://api.thedogapi.com/v1/votes', body ) // Send the body to create a Vote in your Account
+                    
+              await this.getImage();
+              await this.getVotes();
+            },
+            async getVotes()
+            {
+
+              let response = await axios.get('https://api.thedogapi.com/v1/votes', { params: { order:"DESC", limit:25 } } ) // Get the last 25 votes
+              
+              response.data.forEach(element => {
+                //element.created_at = new Date(element.created_at).toString();// full time string including timezone
+                element.created_at = new Date(element.created_at).toJSON().slice(0,10)// just use the date for now
+              });
+
+              this.votes = response.data;
+            }
+        }
+    })
+  </script>
+</body>
+</html>

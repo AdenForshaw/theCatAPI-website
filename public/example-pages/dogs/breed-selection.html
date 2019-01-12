@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-content>
+        <v-container>
+
+            <v-layout align-center justify-center>
+
+            <v-flex xs6>
+                <v-select :items="breeds"
+                        item-text="name"
+                        v-model="selected_breed"
+                        label="Breeds"
+                        return-object
+                        attach></v-select>
+            </v-flex>
+             
+            </v-layout>
+
+
+            <v-layout>
+                <v-flex xs12 sm8 offset-sm2>
+                  <v-card>
+
+  <v-carousel>
+      <v-carousel-item
+        v-for="(item,i) in images"
+        :key="i"
+        :src="item.url"
+      ></v-carousel-item>
+    </v-carousel>
+
+            
+                    <v-card-title primary-title>
+
+                    <div class="text-xs-center">
+                        <v-chip>
+                                <v-avatar>
+                                  <img :src="country_flag_url" :alt="selected_breed.country_code">
+                                </v-avatar>
+                        {{selected_breed.origin}}</v-chip>
+                    </div>
+                      <div>
+                        <h3 class="headline mb-0">{{selected_breed.name}}</h3>
+                        <div>{{selected_breed.description}}</div>
+                        <div>---</div>
+                        <div><i>{{selected_breed.temperament}}</i></div>
+                      </div>
+                    </v-card-title>
+
+                    <v-card-actions>
+                      <v-btn v-if="selected_breed.wikipedia_url" :href="selected_breed.wikipedia_url" target="_blank" flat color="orange">Wikipedia</v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-flex>
+              </v-layout>
+        </v-container>
+      </v-content>
+    </v-app>
+  </div>
+ 
+ 
+  <script>
+    new Vue({ 
+        el: '#app',
+        data: {
+            country_flag_url:"",
+          images: [],
+          breeds:[],
+          selected_breed: {},
+          current_image: {}
+        },
+        created(){
+            this.getBreeds();
+        } ,
+        watch: {
+           
+            selected_breed: function()
+            {
+                console.log(this.selected_breed)
+                 this.getImages();
+            }
+        },
+        methods:{
+
+            async getBreeds()
+            {
+                try{
+                    axios.defaults.headers.common['x-api-key'] = "DEMO-API-KEY" // Replace this with your API Key, as it's set to defaults it will be used from now onwards
+                    
+                    let response = await axios.get('https://api.thedogapi.com/v1/breeds/' ) 
+                    this.breeds = response.data;
+                    console.log("-- ("+this.breeds.length +") Breeds from TheDogApi.com")
+                    
+                    // pick one to display initially
+                    this.selected_breed = this.breeds[10]
+                }catch(err){
+                    console.log(err)
+                }
+            },
+            async getImages()
+            {
+                try{
+                    
+                    let query_params = {
+                        breed_ids: this.selected_breed.id,
+                        limit:8
+                    }
+
+                    let response = await axios.get('https://api.thedogapi.com/v1/images/search', { params: query_params} ) 
+                    
+                    this.pagination_count = response.headers['pagination-count'];
+                    this.images = response.data 
+                    this.current_image = this.images[0]
+
+                    
+
+                    console.log("-- ("+this.images.length +") Images from TheDogApi.com")
+                    console.log( this.pagination_count ,'images available for this query.')
+                    
+                }catch(err){
+                    console.log(err)
+                }
+            }
+            
+        }
+    })
+  </script>
+</body>
+</html>
