@@ -1,7 +1,7 @@
 <template>
   <v-container>
   <div id="main">
-    <div z-index="800" id="title-text">
+    <div id="title-text">
       <v-img :src="app_logo_url" height=128 contain></v-img>
       <h1>{{app_title}} - {{app_strapline}}</h1>
       
@@ -100,7 +100,7 @@
   <v-layout>
     <v-flex xs12 sm6 offset-sm3>
           <v-container grid-list-sm fluid>
-        <p><small><router-link to="/privacy">Privacy Policy</router-link> | <router-link to="/terms">Terms & Conditions</router-link> | <a :href="postman_url" target="_blank">Documentation</a></small></p>
+        <p><small><router-link to="/privacy">Privacy Policy</router-link> | <router-link to="/terms">Terms & Conditions</router-link> | <a :href="docs_url" target="_blank">Documentation</a></small></p>
 
           </v-container>
     </v-flex>

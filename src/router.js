@@ -21,6 +21,12 @@ const router =  new Router({
       component: () => import('./views/Signup.vue')
     },
     {
+      path: '/breeds',
+      name: 'breeds',
+      meta: { gtm: 'Breeds' },
+      component: () => import('./components/Sections/Breeds.vue')
+    },
+    {
       path: '/thanks',
       name: 'thanks',
       meta: { gtm: 'Thanks' },

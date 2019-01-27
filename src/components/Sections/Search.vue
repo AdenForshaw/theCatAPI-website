@@ -264,7 +264,7 @@
         let loaded_breeds = result.data
         loaded_breeds.unshift(this.default_breed)
         this.breeds = loaded_breeds
-        console.log("categories", this.breeds)
+        console.log("breeds", this.breeds)
       },
       resetPagination()
       {
