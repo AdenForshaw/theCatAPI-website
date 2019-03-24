@@ -20,13 +20,10 @@
             <v-carousel-item
               v-for="(item,i) in images"
               :key="i"
-            >
-                    <v-img
+              contain
                       :src="item.url"
-                      lazy-src="https://picsum.photos/10/6"
-                     contain
-                    >
-                    </v-img>
+            >
+
             </v-carousel-item>
           </v-carousel>
             
@@ -36,6 +33,7 @@
               justify-center>
               <div>
                 <h3 class="headline mb-0">{{selected_breed.name}}</h3>
+                <h4> id: {{selected_breed.id }}</h4>
                 <div>{{selected_breed.description}}</div>
                 <div>---</div>
                 <div><i>{{selected_breed.temperament}}</i></div>
