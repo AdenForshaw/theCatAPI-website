@@ -34,3 +34,4 @@ Any issues, questions or suggestions:
 - [Forum](https://forum.thatapiguy.com/)
 
 All the best, Aden Forshaw
+Thanks for investing your time here
