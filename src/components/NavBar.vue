@@ -1,7 +1,7 @@
 <template>
 
 
-  <v-toolbar :style="bar_colour" dark>
+  <v-toolbar :style="bar_colour" style="z-index: 5" dark>
 
 
     <v-toolbar-title>{{title}}</v-toolbar-title>
