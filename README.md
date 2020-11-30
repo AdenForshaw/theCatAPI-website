@@ -1,4 +1,4 @@
-<h2 align="center">TheCatAPI.com Vue.js Website Codebase</h2>
+<h1 align="center">TheCatAPI.com Vue.js Website Codebase</h2>
 
 This App is a demonstration of how to use some of the features of theCatAPI. 
 - Making requests for images of different types
