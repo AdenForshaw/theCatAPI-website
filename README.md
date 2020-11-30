@@ -7,7 +7,7 @@ This App is a demonstration of how to use some of the features of theCatAPI.
 - Uploading your own images
 - Using a sub_id to tag actions with a custom value.
 
-#### What can i do with it?
+### What can i do with it?
 
 You can run clone this site and see how it works, extend it and add more functionality. For instance you could:
 - Make a full app by adding a login form using OAuth, and use the users id as the sub_id. 
@@ -15,7 +15,7 @@ You can run clone this site and see how it works, extend it and add more functio
 - Make some improvements and create a pull request to improve the main website..
 
 
-#### How do i install it?
+### How do i install it?
 
 - Sign up to [theCatAPI.com](https://theCatAPI.com) for a free API Key
 - clone this repo
