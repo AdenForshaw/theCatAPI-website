@@ -25,7 +25,7 @@ You can run clone this site and see how it works, extend it and add more functio
 - open 'http://localhost:8080' in your browser
 - hack & improve the codebase
 
-## Stay In Touch
+# Stay In Touch
 
 Any issues, questions or suggestions:
 
