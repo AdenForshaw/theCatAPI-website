@@ -38,7 +38,7 @@ const createDataForm = function(data) {
     return formData;
 }
 
-const merchants = {
+const dataStore = {
   namespaced: true,
   state: {
     sub_id: 'demo-'+((1<<24)*Math.random()|0).toString(16), // Default value
@@ -91,7 +91,6 @@ const merchants = {
   },
   actions: {
     async setAPIKey({
-      dispatch,
       commit
     }, key) {
       try {
@@ -101,7 +100,6 @@ const merchants = {
       }
     },
     async setSubID({
-      dispatch,
       commit
     }, sub_id) {
       console.log("SetSubID", sub_id)
@@ -112,7 +110,6 @@ const merchants = {
       }
     },
      getSubID({
-      dispatch,
       rootGetters
     }) {
       try {
@@ -123,7 +120,6 @@ const merchants = {
     },
 
     async searchImages({
-      dispatch,
       rootGetters,
       commit
     }, query) {
@@ -142,7 +138,6 @@ const merchants = {
     },
 
     async getImage({
-      dispatch,
       rootGetters
     }, query) {
       try {
@@ -158,10 +153,8 @@ const merchants = {
       }
     },
     async getCategories({
-      dispatch,
-      rootGetters,
       commit
-    }, query) {
+    }) {
       try {
         let response = await axios.get('/v1/categories/');
         commit(SET_CATEGORIES,response.data)
@@ -171,7 +164,6 @@ const merchants = {
       }
     },
     async getUploads({
-      dispatch,
       rootGetters
     }, query) {
       try {
@@ -187,7 +179,6 @@ const merchants = {
       }
     },
     async voteImage({
-      dispatch,
       rootGetters
     }, params) {
       try {
@@ -204,7 +195,6 @@ const merchants = {
       }
     },
     async uploadImage({
-      dispatch,
       rootGetters
     }, params) {
       try {
@@ -225,7 +215,6 @@ const merchants = {
 
     },
     async getFavourites({
-      dispatch,
       rootGetters,
       commit
     }, query) {
@@ -243,7 +232,6 @@ const merchants = {
       }
     },
     async favouriteImage({
-      dispatch,
       rootGetters,
       commit
     }, params) {
@@ -262,7 +250,6 @@ const merchants = {
       }
     },
     async unFavouriteImage({
-      dispatch,
       rootGetters,
       commit
     }, params) {
@@ -278,9 +265,8 @@ const merchants = {
         throw new Error(error)
       }
     },
+    // eslint-disable-next-line
     async signup({
-      dispatch,
-      rootGetters
     }, params) {
       try {
         // this is rate limited on the server and uses a dynamic env var to prevent being spammed so it probably won't work well/ if at all outisde of theCatAPI.com / theDogAPI.com
@@ -293,7 +279,6 @@ const merchants = {
     },
 
     async getBreeds({
-      dispatch,
       rootGetters,
       commit
     }, query) {
@@ -311,4 +296,4 @@ const merchants = {
   }
 }
 
-export default merchants
+export default dataStore
