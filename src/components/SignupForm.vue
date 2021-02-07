@@ -22,25 +22,21 @@
           <v-text-field id="app_description" prepend-icon="help_outline" label="App Description" hint="At least 8 characters" v-model="app_description" min="8" 
             required></v-text-field>
      
-    <!--v-radio-group v-model="user_type" required >
-      <p>Are you a...</p>
+    <v-radio-group v-model="user_type" required >
+      <p>What type of project will you use the API for?</p>
       <v-radio
-        label="Student"
-        value="student"
+        label="A personal project"
+        value="personal"
       ></v-radio>
       <v-radio
-        label="Teacher"
-        value="teacher"
+        label="A project for school/college/university"
+        value="classroom"
       ></v-radio>
       <v-radio
-        label="Tester"
-        value="tester"
+        label="A business project"
+        value="business"
       ></v-radio>
-      <v-radio
-        label="Developer"
-        value="developer"
-      ></v-radio>
-    </v-radio-group-->
+    </v-radio-group>
     <v-checkbox
       label=" Opt-in to my newsletter about other APIs i'm building?"
       v-model="opt_in"
