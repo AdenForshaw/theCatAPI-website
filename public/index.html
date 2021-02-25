@@ -22,11 +22,13 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= process.env.VUE_APP_TITLE %> - <%= process.env.VUE_APP_STRAPLINE %></title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
+    <link href="//cdn.jsdelivr.net/npm/featherlight@1.7.14/release/featherlight.min.css" type="text/css" rel="stylesheet" />
     <script>
       // Redirect from http to https if not in localhost
     if (location.protocol != 'https:' && document.location.hostname!='localhost')
@@ -44,3 +46,14 @@
     <!-- built files will be auto injected -->
   </body>
 </html>
+<script src="//cdn.jsdelivr.net/npm/featherlight@1.7.14/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+<!-- <script> 
+  $.featherlight({
+  iframe: 'https://docs.google.com/forms/d/e/1FAIpQLSchyWM3lVdwewCUOqoDe8t91Wq3QrQ4E4v6pZTirwv56Qvy5A/viewform?usp=sf_link',
+  iframeMaxWidth: '100%',
+  iframeWidth: 800,
+  iframeHeight: 600,
+  width: '80%',
+  height: '80%'
+}); -->
+</script>
