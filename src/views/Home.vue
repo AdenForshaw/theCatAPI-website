@@ -52,7 +52,7 @@
                       color="green"
                       
                       dark
-                      href="https://forms.gle/giLTBg3mAfPHD4Jj7"
+                      :href="app_premium_test_url"
                       target="_blank"
                       >PREREGISTER FOR A LICENCE</v-btn
                     >
@@ -201,6 +201,7 @@ export default {
       app_strapline: process.env.VUE_APP_STRAPLINE,
       app_description: process.env.VUE_APP_DESCRIPTION,
       app_logo_url: process.env.VUE_APP_LOGO_URL,
+      app_premium_test_url: process.env.VUE_APP_PREMIUM_TEST_URL
     };
   },
 };
