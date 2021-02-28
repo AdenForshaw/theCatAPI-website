@@ -7,12 +7,12 @@
             <v-flex xs12 sm7 class="title-text">
               <v-layout row wrap class="title-text">
                 <v-flex xs12 class="text-xs-left"
-                  ><h2 class="title-text">
+                  ><h1 class="title-text">
                     {{ app_title }} -
                     <span class="font-weight-medium">
                       {{ app_strapline }}
                     </span>
-                  </h2></v-flex
+                  </h1></v-flex
                 >
                 <v-flex xs12 class="text-xs-left"
                   ><h2 class="title-text" :style="text_colour">
@@ -143,15 +143,19 @@
               </v-card-text>
 
               <v-card-actions class="justify-center">
-                <v-btn color="teal  white--text" text large>
-                  Sign for free
-                </v-btn>
+                <ex-btn color="teal  white--text" text large
+                  v-bind:gacategory="btn_category"
+                  v-bind:galabel='free_btn_label' 
+                  :gavalue="1"  
+                  to="/signup">
+                  Signup for free
+                </ex-btn>
               </v-card-actions>
               <div class="pa-4">
                 <ul class="text-xs-left">
                   <li>10,000 requests / month</li>
                   <li>Free Code Samples</li>
-                  <li>Community forums</li>
+                  <li><a href="http://forum.thatapiguy.com/">Community forums</a></li>
                   <li>SSL Encryption</li>
                 </ul>
               </div>
@@ -167,7 +171,7 @@
                 </v-row>
 
                 <div class="my-2">
-                  <h2 v-if="yearly_price" class="headline light-blue--text lighten-1">$120</h2>
+                  <h2 v-if="yearly_price" class="headline light-blue--text lighten-1">$100</h2>
                   <h2 v-else class="headline light-blue--text lighten-1">$10</h2>
                   <span v-if="yearly_price" class="font-italic caption">yearly</span>
                   <span v-else class="font-italic caption">per month</span>
@@ -177,21 +181,28 @@
               </v-card-text>
 
               <v-card-actions class="justify-center">
-                <v-btn color="light-blue lighten-1 white--text" text large>
-                  Sign for free
-                </v-btn>
+                <ex-btn 
+              v-bind:gacategory="btn_category" 
+              v-bind:galabel="paid_btn_label"  
+              v-bind:gavalue="2" 
+              color="light-blue lighten-1 white--text" text large
+
+              @click="handlePaidSignup">
+                  Get Started
+                </ex-btn>
               </v-card-actions>
               <div class="pa-4">
                 <ul class="text-xs-left">
-                  <li>10,000 requests / month</li>
+                  <li>100,000 requests / month</li>
                   <li>Free Code Samples</li>
-                  <li>Community forums</li>
+                  <li><a href="http://forum.thatapiguy.com/">Community forums</a></li>
                   <li>SSL Encryption</li>
                 </ul>
               </div>
               <div class="pa-4">
                 <ul class="text-xs-left">
-                  <li><b>Curated Facts / Jokes / Quotes / Analytics</b></li>
+                  <li><b>Curated Facts / Jokes / Quotes</b></li>
+                  <li><b>Analytics</b></li>
                   <li><b>Higher resolution Pictures</b></li>
                   <li><b>Premium Images</b></li>
                   <li><b>Video</b></li>
@@ -217,24 +228,31 @@
               </v-card-text>
 
               <v-card-actions class="justify-center">
-                <v-btn color="amber lighten-2 white--text" text large>
-                  Sign for free
-                </v-btn>
+                <ex-btn 
+              v-bind:gacategory="btn_category" 
+              v-bind:galabel="enterprise_btn_label"  
+              v-bind:gavalue="3" 
+                color="amber lighten-2 white--text" text large
+                href="mailto:aden@thatapicompany.com">
+                  Contact us
+                </ex-btn>
               </v-card-actions>
               <div class="pa-4">
                 <ul class="text-xs-left">
-                  <li>10,000 requests / month</li>
+                  <li>Unlimited requests / month</li>
                   <li>Free Code Samples</li>
-                  <li>Community forums</li>
+                  <li><a href="http://forum.thatapiguy.com/">Community forums</a></li>
                   <li>SSL Encryption</li>
                 </ul>
               </div>
               <div class="pa-4">
                 <ul class="text-xs-left">
-                  <li><b>Curated Facts / Jokes / Quotes / Analytics</b></li>
+                  <li><b>Curated Facts / Jokes / Quotes</b></li>
+                  <li><b>Analytics</b></li>
                   <li><b>Higher resolution Pictures</b></li>
                   <li><b>Premium Images</b></li>
                   <li><b>Video</b></li>
+                  <li><b>Realtime web hooks</b></li>
                 </ul>
               </div>
             </v-card>
@@ -246,6 +264,8 @@
 </template>
 
 <script>
+import ExBtn from '@/components/ExBtn'
+
 import Vote from "../components/Sections/Vote";
 import Search from "../components/Sections/Search";
 import Favourites from "../components/Sections/Favourites";
@@ -255,6 +275,7 @@ import CodeExamples from "../components/CodeExamples";
 
 export default {
   components: {
+    ExBtn,
     Vote,
     Search,
     Favourites,
@@ -276,8 +297,19 @@ export default {
       this.$store.dispatch("TheCatAPI/setSubID", this.$route.query.sub_id);
     }
   },
+ methods: {
+  handlePaidSignup(e) {
+   // just to see that the click handler still works
+   console.log(e);
+window.open(process.env.VUE_APP_PREMIUM_TEST_URL, '_blank');
+  }
+ },
   data() {
     return {
+      btn_category:"BUTTONS",
+      free_btn_label:"FREE",
+      paid_btn_label:"PAID",
+      enterprise_btn_label:"ENTERPRISE",
       model: "tab-1",
       postman_url: process.env.VUE_APP_POSTMAN_URL,
       docs_url: process.env.VUE_APP_DOCS_URL,

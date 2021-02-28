@@ -5,9 +5,11 @@
         <v-layout row wrap>
           <v-flex sm3>
             <p class="text-xs-left">
-              <router-link class="text-link" to="/privacy"
-                >About Us</router-link
-              >
+              <a
+                class="text-link"
+                href="https://thatapicompany.com/"
+                target="_blank"
+                >About Us</a>
             </p>
             <p class="text-xs-left">
               <router-link class="text-link" to="/terms"
@@ -23,7 +25,7 @@
           <v-flex sm3>
             <p class="text-xs-left">
               <a class="text-link" href="#" target="_blank"
-                >That API Platform</a
+                >The API Platform</a
               >
             </p>
             <p class="text-xs-left">

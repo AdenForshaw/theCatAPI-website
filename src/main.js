@@ -4,8 +4,12 @@ import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import store from './store/index'
+import VueGtag from 'vue-gtag'
 
 Vue.config.productionTip = false
+Vue.use(VueGtag, {
+  config: { id: process.env.VUE_APP_GA_ID } 
+})
 
 new Vue({
   router,
