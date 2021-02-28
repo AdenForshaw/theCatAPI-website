@@ -2,9 +2,9 @@
       <v-card>
 <br>
   <div>
-    <v-btn color="green" large @click="voteUp" >
+    <v-btn color="green" medium @click="voteUp" >
               <v-icon>thumb_up</v-icon>&nbsp; Love it</v-btn>
-    <v-btn color="red" large @click="voteDown" >
+    <v-btn color="red" medium @click="voteDown" >
               <v-icon>thumb_down</v-icon>&nbsp; Nope it</v-btn>
   </div>
         <v-container>

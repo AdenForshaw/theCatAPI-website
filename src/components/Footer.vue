@@ -1,36 +1,71 @@
 <template>
-  <v-footer
-    dark
-    height="auto"
-    fixed
-  >
-    <v-card
-      class="flex"
-      flat
-      tile
-    >
-      <v-card-actions class="grey darken-3 justify-center">
-        <p><strong>Created by Aden Forshaw - <a href="https://thatapiguy.com">ThatAPIGuy.com</a></strong></p> 
-      </v-card-actions>
-      
-    </v-card>
+  <v-footer dark height="auto">
+    <v-layout>
+      <v-container>
+        <v-layout row wrap>
+          <v-flex sm3>
+            <p class="text-xs-left">
+              <router-link class="text-link" to="/privacy"
+                >About Us</router-link
+              >
+            </p>
+            <p class="text-xs-left">
+              <router-link class="text-link" to="/terms"
+                >Terms & Conditions</router-link
+              >
+            </p>
+            <p class="text-xs-left">
+              <router-link class="text-link" to="/privacy"
+                >Privacy Policy</router-link
+              >
+            </p>
+          </v-flex>
+          <v-flex sm3>
+            <p class="text-xs-left">
+              <a class="text-link" href="#" target="_blank"
+                >That API Platform</a
+              >
+            </p>
+            <p class="text-xs-left">
+              <a class="text-link" :href="forum_url" target="_blank">Forum</a>
+            </p>
+            <p class="text-xs-left">
+              <a
+                class="text-link"
+                href="https://github.com/adenforshaw/thecatapi-website"
+                target="_blank"
+                >Github</a
+              >
+            </p>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-layout>
   </v-footer>
 </template>
 
 <script>
 export default {
-  name: 'Footer',
+  name: "Footer",
   props: {
-    msg: String
+    msg: String,
   },
-    data: () => ({
-      icons: [
-        'fab fa-facebook',
-        'fab fa-twitter',
-        'fab fa-google-plus',
-        'fab fa-linkedin',
-        'fab fa-instagram'
-      ]
-    })
-  }
+  data: () => ({
+    icons: [
+      "fab fa-facebook",
+      "fab fa-twitter",
+      "fab fa-google-plus",
+      "fab fa-linkedin",
+      "fab fa-instagram",
+    ],
+    forum_url: process.env.VUE_APP_FORUM_URL,
+    roadmap_url: process.env.VUE_APP_ROADMAP_URL,
+  }),
+};
 </script>
+<style scoped>
+.text-link {
+  color: white;
+  text-decoration: none;
+}
+</style>
