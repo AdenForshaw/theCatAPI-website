@@ -289,7 +289,8 @@ export default {
       app_logo_url: process.env.VUE_APP_LOGO_URL,
       text_colour: "color:" + process.env.VUE_APP_PRIMARY_COLOUR,
       bar_colour: "background-color:" + process.env.VUE_APP_PRIMARY_COLOUR,
-      yearly_price: false
+      yearly_price: false,
+      app_premium_test_url: process.env.VUE_APP_PREMIUM_TEST_URL
     };
   },
 };

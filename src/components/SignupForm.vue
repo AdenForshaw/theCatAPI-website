@@ -103,9 +103,9 @@
         this.loading = false;
       },
       async submitLogIn() {
-          if(this.email.length<4){this.errorModal('Need an Email','Need somewhere to send the API Key');return;}
-          else if(this.app_description.length<8){this.errorModal('Need a longer App Description','it helps me know what features to add next');return;}
-          //else if(this.user_type==null){this.errorModal("Need an 'Are you a'",'it helps me know which type of user to make tutorials for');return;}
+          if(this.email.length<4){this.errorModal('Needs an Email','I need somewhere to send the API Key');return;}
+          else if(this.app_description.length<8){this.errorModal('Needs a longer App Description','It helps me know what features to add next');return;}
+          else if(this.user_type==null){this.errorModal("Needs a 'project type'",'It helps me know which type of user to make tutorials for');return;}
         
         this.loading = true;
         const scope = this; 
