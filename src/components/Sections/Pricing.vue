@@ -236,6 +236,11 @@ export default {
   padding: 10px;
 }
 @media screen and (min-width: 1024px) {
+  .collapsable-details.collapsed {
+    height: auto;
+    opacity: 1;
+    padding: 0;
+  }
   .pricing-title {
     font-size: 3em;
   }
