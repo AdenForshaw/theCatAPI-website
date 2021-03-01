@@ -14,10 +14,10 @@
       <v-flex v-if="current_image">
                 <v-hover>
               <v-card align-content-center
-                  slot-scope="{ hover }">
+                  slot-scope="{ hover }" height="350px">
                 <img class="center"
                   :src="current_image.url"
-                  max-height="500px"
+                  max-height="350px"
                   contain
                   lazy-src="https://picsum.photos/10/6"
                 >
@@ -169,11 +169,14 @@
   img {
   display: block;
   max-width:100%;
-  max-height:600px;
+  max-height:350px;
   width: auto;
-  height: 400px;
+  height: auto;
   margin-left:auto;
 margin-right:auto;
+}
+.wrapeprholder   {
+  height: 200px;
 }
 .center img {        
   display:block;

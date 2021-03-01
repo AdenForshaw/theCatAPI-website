@@ -19,16 +19,16 @@
                     {{ app_substrapline }}
                   </h2></v-flex
                 >
-                <v-flex xs7
+                <v-flex xs8
                   ><p class="text-xs-left mb-0">
                     {{ app_description }}
-                    <a :href="app_pricing_url" class="inline-link"
+                    <a :href="app_pricing_url"
                       >Get your license now.</a
                     >
                   </p></v-flex
                 >
               </v-layout>
-              <v-layout row justify-space-between>
+              <v-layout row>
                 <v-flex class="tech-stack-logo px-3">
                   <v-img
                     :src="require(`../assets/images/react.png`)"
