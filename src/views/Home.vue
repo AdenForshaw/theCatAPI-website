@@ -20,34 +20,42 @@
                   </h2></v-flex
                 >
                 <v-flex xs7
-                  ><p class="text-xs-left">{{ app_description }}</p></v-flex
+                  ><p class="text-xs-left mb-0">
+                    {{ app_description }}
+                    <a :href="app_pricing_url" class="inline-link"
+                      >Get your license now.</a
+                    >
+                  </p></v-flex
                 >
               </v-layout>
-              <v-layout>
-                <v-flex class="d-flex" xs12>
+              <v-layout row justify-space-between>
+                <v-flex class="tech-stack-logo px-3">
                   <v-img
                     :src="require(`../assets/images/react.png`)"
-                    class="px-3"
                     contain
                   ></v-img>
+                </v-flex>
+                <v-flex class="tech-stack-logo px-3">
                   <v-img
                     :src="require(`../assets/images/jquery.png`)"
-                    class="px-3"
                     contain
                   ></v-img>
+                </v-flex>
+                <v-flex class="tech-stack-logo px-3">
                   <v-img
                     :src="require(`../assets/images/vue.png`)"
-                    class="px-3"
                     contain
                   ></v-img>
+                </v-flex>
+                <v-flex class="tech-stack-logo px-3">
                   <v-img
                     :src="require(`../assets/images/node.png`)"
-                    class="px-3"
                     contain
                   ></v-img>
+                </v-flex>
+                <v-flex class="tech-stack-logo px-3">
                   <v-img
                     :src="require(`../assets/images/angular.png`)"
-                    class="px-3"
                     contain
                   ></v-img>
                 </v-flex>
@@ -105,7 +113,7 @@
             <v-flex xs12>
               <label
                 :style="bar_colour"
-                class="font-italic white--text px-2 py-1"
+                class="font-italic app-infoline white--text px-2 py-2"
               >
                 {{ app_title }} {{ app_infoline }}
               </label>
@@ -114,173 +122,28 @@
         </div>
       </v-container>
     </v-layout>
-    <v-layout row grey lighten-1>
-      <v-container grid-list-xl>
-        <v-flex class="pricing-div align-center" justify-space-between xs12>
-          <h2 class="text-xs-left">Pricing</h2>
-          <div class="text-xs-right d-flex align-center">
-            <label>Monthly</label>
-            <v-switch v-model="yearly_price" class="mx-2"></v-switch>
-            <label>Yearly with 20% discount</label>
-          </div>
-        </v-flex>
-        <v-layout row wrap class="justify-space-between">
-          <v-flex xs4>
-            <v-card class="mx-auto my-12 fill-height">
-              <v-card-title class="justify-center title">Free</v-card-title>
-
-              <v-card-text>
-                <v-row align="center" class="mx-0">
-                  <v-icon x-large>mdi-google-controller</v-icon>
-                </v-row>
-
-                <div class="my-2">
-                  <h2 class="headline teal--text">$0</h2>
-                  <span class="font-italic caption">No hidden costs</span>
-                </div>
-
-                <p>Free for you to use on your non-monetized app</p>
-              </v-card-text>
-
-              <v-card-actions class="justify-center">
-                <ex-btn color="teal  white--text" text large
-                  v-bind:gacategory="btn_category"
-                  v-bind:galabel='free_btn_label' 
-                  :gavalue="1"  
-                  to="/signup">
-                  Signup for free
-                </ex-btn>
-              </v-card-actions>
-              <div class="pa-4">
-                <ul class="text-xs-left">
-                  <li>10,000 requests / month</li>
-                  <li>Free Code Samples</li>
-                  <li><a href="http://forum.thatapiguy.com/">Community forums</a></li>
-                  <li>SSL Encryption</li>
-                </ul>
-              </div>
-            </v-card>
-          </v-flex>
-          <v-flex xs4>
-            <v-card class="mx-auto my-12 fill-height">
-              <v-card-title class="justify-center title">Paid</v-card-title>
-
-              <v-card-text>
-                <v-row align="center" class="mx-0">
-                  <v-icon x-large>mdi-office-building</v-icon>
-                </v-row>
-
-                <div class="my-2">
-                  <h2 v-if="yearly_price" class="headline light-blue--text lighten-1">$10</h2>
-                  <h2 v-else class="headline light-blue--text lighten-1">$12.50</h2>
-                  <span class="font-italic caption">per month</span>
-                </div>
-
-                <p>Required if you charge for access to the application using the Cat API</p>
-              </v-card-text>
-
-              <v-card-actions class="justify-center">
-                <ex-btn 
-              v-bind:gacategory="btn_category" 
-              v-bind:galabel="paid_btn_label"  
-              v-bind:gavalue="2" 
-              color="light-blue lighten-1 white--text" text large
-
-              @click="handlePaidSignup">
-                  Get Started
-                </ex-btn>
-              </v-card-actions>
-              <div class="pa-4">
-                <ul class="text-xs-left">
-                  <li>100,000 requests / month</li>
-                  <li>Free Code Samples</li>
-                  <li><a href="http://forum.thatapiguy.com/">Community forums</a></li>
-                  <li>SSL Encryption</li>
-                </ul>
-              </div>
-              <div class="pa-4">
-                <ul class="text-xs-left">
-                  <li><b>Curated Facts / Jokes / Quotes</b></li>
-                  <li><b>Analytics</b></li>
-                  <li><b>Higher resolution Pictures</b></li>
-                  <li><b>Premium Images</b></li>
-                  <li><b>Video</b></li>
-                  <li><b>Realtime web hooks</b></li>
-                </ul>
-              </div>
-            </v-card>
-          </v-flex>
-          <v-flex xs4>
-            <v-card class="mx-auto my-12 fill-height">
-              <v-card-title class="justify-center title">Enterprise</v-card-title>
-
-              <v-card-text>
-                <v-row align="center" class="mx-0">
-                  <v-icon x-large>mdi-domain</v-icon>
-                </v-row>
-
-                <div class="my-2">
-                  <h2 class="headline amber--text lighten-2">Volume Pricing</h2>
-                </div>
-
-                <p>Bespoke pricing tailored to your scaling needs</p>
-              </v-card-text>
-
-              <v-card-actions class="justify-center">
-                <ex-btn 
-              v-bind:gacategory="btn_category" 
-              v-bind:galabel="enterprise_btn_label"  
-              v-bind:gavalue="3" 
-                color="amber lighten-2 white--text" text large
-                href="mailto:aden@thatapicompany.com">
-                  Contact us
-                </ex-btn>
-              </v-card-actions>
-              <div class="pa-4">
-                <ul class="text-xs-left">
-                  <li>Unlimited requests / month</li>
-                  <li>Free Code Samples</li>
-                  <li><a href="http://forum.thatapiguy.com/">Community forums</a></li>
-                  <li>SSL Encryption</li>
-                </ul>
-              </div>
-              <div class="pa-4">
-                <ul class="text-xs-left">
-                  <li><b>Curated Facts / Jokes / Quotes</b></li>
-                  <li><b>Analytics</b></li>
-                  <li><b>Higher resolution Pictures</b></li>
-                  <li><b>Premium Images</b></li>
-                  <li><b>Video</b></li>
-                  <li><b>Realtime web hooks</b></li>
-                </ul>
-              </div>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-layout>
+    <pricing />
   </v-container>
 </template>
 
 <script>
-import ExBtn from '@/components/ExBtn'
-
 import Vote from "../components/Sections/Vote";
 import Search from "../components/Sections/Search";
 import Favourites from "../components/Sections/Favourites";
 import Upload from "../components/Sections/Upload";
 import Breeds from "../components/Sections/Breeds";
 import CodeExamples from "../components/CodeExamples";
+import Pricing from "../components/Sections/Pricing";
 
 export default {
   components: {
-    ExBtn,
     Vote,
     Search,
     Favourites,
     Upload,
     Breeds,
     CodeExamples,
+    Pricing,
   },
   created() {
     console.log(process.env.VUE_APP_NAME);
@@ -296,19 +159,8 @@ export default {
       this.$store.dispatch("TheCatAPI/setSubID", this.$route.query.sub_id);
     }
   },
- methods: {
-  handlePaidSignup(e) {
-   // just to see that the click handler still works
-   console.log(e);
-window.open(process.env.VUE_APP_PREMIUM_TEST_URL, '_blank');
-  }
- },
   data() {
     return {
-      btn_category:"BUTTONS",
-      free_btn_label:"FREE",
-      paid_btn_label:"PAID",
-      enterprise_btn_label:"ENTERPRISE",
       model: "tab-1",
       postman_url: process.env.VUE_APP_POSTMAN_URL,
       docs_url: process.env.VUE_APP_DOCS_URL,
@@ -320,8 +172,8 @@ window.open(process.env.VUE_APP_PREMIUM_TEST_URL, '_blank');
       app_logo_url: process.env.VUE_APP_LOGO_URL,
       text_colour: "color:" + process.env.VUE_APP_PRIMARY_COLOUR,
       bar_colour: "background-color:" + process.env.VUE_APP_PRIMARY_COLOUR,
-      yearly_price: true,
-      app_premium_test_url: process.env.VUE_APP_PREMIUM_TEST_URL
+      app_premium_test_url: process.env.VUE_APP_PREMIUM_TEST_URL,
+      app_pricing_url: process.env.VUE_APP_PRICING_URL,
     };
   },
 };
@@ -329,10 +181,28 @@ window.open(process.env.VUE_APP_PREMIUM_TEST_URL, '_blank');
 
 <style scoped>
 .title-text {
-  padding-bottom: 40px;
+  padding-bottom: 30px;
 }
-.pricing-div {
-  display: flex;
-  flex: 0 0 auto;
+.inline-link {
+  text-decoration: none;
+  color: inherit;
+}
+.tech-stack-logo {
+  max-width: 100px;
+}
+.app-infoline {
+  line-height: 1.5;
+}
+@media screen and (min-width: 1024px) {
+  .title-text {
+    padding-bottom: 40px;
+  }
+  h1.title-text {
+    font-size: 3em;
+  }
+  .tech-stack-logo {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }
 </style>
