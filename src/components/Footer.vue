@@ -23,11 +23,11 @@
             </p>
           </v-flex>
           <v-flex sm3>
-            <p class="text-xs-left">
+            <!--p class="text-xs-left">
               <a class="text-link" href="#" target="_blank"
                 >The API Platform</a
               >
-            </p>
+            </p-->
             <p class="text-xs-left">
               <a class="text-link" :href="forum_url" target="_blank">Forum</a>
             </p>

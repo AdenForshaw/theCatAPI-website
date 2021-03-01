@@ -177,7 +177,7 @@
                   <span v-else class="font-italic caption">per month</span>
                 </div>
 
-                <p>Free for you to use on your non-monetized app</p>
+                <p>Required if you charge for access to the application using the Cat API</p>
               </v-card-text>
 
               <v-card-actions class="justify-center">
@@ -224,7 +224,7 @@
                   <h2 class="headline amber--text lighten-2">Volume Pricing</h2>
                 </div>
 
-                <p>Free for you to use on your non-monetized app</p>
+                <p>Bespoke pricing tailored to your scaling needs</p>
               </v-card-text>
 
               <v-card-actions class="justify-center">
