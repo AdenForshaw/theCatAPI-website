@@ -171,10 +171,9 @@
                 </v-row>
 
                 <div class="my-2">
-                  <h2 v-if="yearly_price" class="headline light-blue--text lighten-1">$100</h2>
-                  <h2 v-else class="headline light-blue--text lighten-1">$10</h2>
-                  <span v-if="yearly_price" class="font-italic caption">yearly</span>
-                  <span v-else class="font-italic caption">per month</span>
+                  <h2 v-if="yearly_price" class="headline light-blue--text lighten-1">$10</h2>
+                  <h2 v-else class="headline light-blue--text lighten-1">$12.50</h2>
+                  <span class="font-italic caption">per month</span>
                 </div>
 
                 <p>Required if you charge for access to the application using the Cat API</p>
