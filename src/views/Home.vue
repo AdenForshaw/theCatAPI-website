@@ -1,163 +1,128 @@
 <template>
-  <v-container>
-    <div id="main">
-      <div id="title-text">
-        <v-img :src="app_logo_url" height="128" contain></v-img>
-        <h1>{{ app_title }} - {{ app_strapline }}</h1>
-
-        <br />
-        <p>{{ app_description }}</p>
-        <v-container class="cont-2" grey lighten-5 fill-height>
+  <v-container fluid class="pa-0">
+    <v-layout row wrap>
+      <v-container>
+        <div id="main">
           <v-layout row wrap>
-            <v-flex xs12 sm6>
-              <v-card
-                :loading="loading"
-                class="mx-auto mb-4"
-                max-width="374"
-                elevation="4"
-                tile
-                rounded
-                min-height="100%"
-              >
-                <v-card-title class="headline mb-1"><h2 class="text-center light-green--text">Free</h2></v-card-title>
-                <v-card-text class="text-left">
-                  <v-row align="center" class="mx-0">
-                    <p>Free for you to use on your non-monetised app</p>
-                    <v-btn color="blue" large dark to="/signup"
-                      >Signup for Free</v-btn
+            <v-flex xs12 sm7 class="title-text">
+              <v-layout row wrap class="title-text">
+                <v-flex xs12 class="text-xs-left"
+                  ><h1 class="title-text">
+                    {{ app_title }} -
+                    <span class="font-weight-medium">
+                      {{ app_strapline }}
+                    </span>
+                  </h1></v-flex
+                >
+                <v-flex xs12 class="text-xs-left"
+                  ><h2 class="title-text" :style="text_colour">
+                    {{ app_substrapline }}
+                  </h2></v-flex
+                >
+                <v-flex xs8
+                  ><p class="text-xs-left mb-0">
+                    {{ app_description }}
+                    <a :href="app_pricing_url"
+                      >Get your license now.</a
                     >
-                  </v-row>
-                </v-card-text>
-              </v-card>
-            </v-flex>            
-            <v-flex xs12 sm6>
-              <v-card
-                :loading="loading"
-                class=""
-                max-width="374"
-                elevation="4"
-                tile
-                rounded
-                min-height="90%"
-              >
-                <v-card-title class="headline mb-1"><h2 class="light-blue--text">Paid</h2></v-card-title>
-                <v-card-text class="text-left">
-                  <v-row align="center" class="mx-2">
-                    <p>
-                      Required if you charge for access to the application using
-                      the Cat API
-                    </p>
-                    <p><i>Coming soon. Preregister now.</i></p>
-                    <v-btn
-                      color="green"
-                      
-                      dark
-                      :href="app_premium_test_url"
-                      target="_blank"
-                      >PREREGISTER FOR A LICENCE</v-btn
-                    >
-                  </v-row>
-                </v-card-text>
-              </v-card>
+                  </p></v-flex
+                >
+              </v-layout>
+              <v-layout row>
+                <v-flex class="tech-stack-logo px-3">
+                  <v-img
+                    :src="require(`../assets/images/react.png`)"
+                    contain
+                  ></v-img>
+                </v-flex>
+                <v-flex class="tech-stack-logo px-3">
+                  <v-img
+                    :src="require(`../assets/images/jquery.png`)"
+                    contain
+                  ></v-img>
+                </v-flex>
+                <v-flex class="tech-stack-logo px-3">
+                  <v-img
+                    :src="require(`../assets/images/vue.png`)"
+                    contain
+                  ></v-img>
+                </v-flex>
+                <v-flex class="tech-stack-logo px-3">
+                  <v-img
+                    :src="require(`../assets/images/node.png`)"
+                    contain
+                  ></v-img>
+                </v-flex>
+                <v-flex class="tech-stack-logo px-3">
+                  <v-img
+                    :src="require(`../assets/images/angular.png`)"
+                    contain
+                  ></v-img>
+                </v-flex>
+              </v-layout>
+            </v-flex>
+
+            <v-flex xs12 sm5 class="title-text">
+              <v-layout>
+                <v-flex xs12>
+                  <v-tabs
+                    color="black"
+                    dark
+                    slider-color="white"
+                    centered
+                    v-model="model"
+                  >
+                    <v-tab class="caption" href="#tab-1" ripple> Vote </v-tab>
+                    <v-tab class="caption" href="#tab-breeds" ripple>
+                      Breeds
+                    </v-tab>
+                    <v-tab class="caption" href="#tab-2" ripple>
+                      Images/Search
+                    </v-tab>
+                    <v-tab class="caption" href="#tab-3" ripple>
+                      Favourites
+                    </v-tab>
+                    <v-tab class="caption" href="#tab-4" ripple> Upload </v-tab>
+                  </v-tabs>
+
+                  <v-tabs-items v-model="model">
+                    <v-tab-item value="tab-1">
+                      <Vote />
+                    </v-tab-item>
+                    <v-tab-item value="tab-breeds">
+                      <Breeds />
+                    </v-tab-item>
+                    <v-tab-item value="tab-2">
+                      <Search />
+                    </v-tab-item>
+                    <v-tab-item value="tab-3">
+                      <Favourites />
+                    </v-tab-item>
+                    <v-tab-item value="tab-4">
+                      <Upload />
+                    </v-tab-item>
+                  </v-tabs-items>
+                </v-flex>
+              </v-layout>
             </v-flex>
           </v-layout>
-        </v-container>
-      </div>
+        </div>
 
-      <div id="tab-title-text">
-        <h2>Take it for a test drive</h2>
-      </div>
-      <v-layout>
-        <v-flex xs12>
-          <v-tabs
-            color="black"
-            dark
-            slider-color="white"
-            centered
-            v-model="model"
-          >
-            <v-tab href="#tab-1" ripple> Vote </v-tab>
-            <v-tab href="#tab-breeds" ripple> Breeds </v-tab>
-            <v-tab href="#tab-2" ripple> Images/Search </v-tab>
-            <v-tab href="#tab-3" ripple> Favourites </v-tab>
-            <v-tab href="#tab-4" ripple> Upload </v-tab>
-          </v-tabs>
-
-          <v-tabs-items v-model="model">
-            <v-tab-item value="tab-1">
-              <Vote />
-            </v-tab-item>
-            <v-tab-item value="tab-breeds">
-              <Breeds />
-            </v-tab-item>
-            <v-tab-item value="tab-2">
-              <Search />
-            </v-tab-item>
-            <v-tab-item value="tab-3">
-              <Favourites />
-            </v-tab-item>
-            <v-tab-item value="tab-4">
-              <Upload />
-            </v-tab-item>
-          </v-tabs-items>
-        </v-flex>
-      </v-layout>
-    </div>
-
-    <div class="footer-controls">
-      <v-layout>
-        <v-flex xs12 sm6 offset-sm3>
-          <v-container grid-list-sm fluid>
-            <h3>Found a bug, or need help using it?</h3>
-            <p>
-              Just post your question, feedback, or code issue over in the Forum
-            </p>
-            <p>There's lots of code examples in the documentation</p>
-            <v-btn
-              color="blue"
-              href="https://forum.thatapiguy.com/"
-              target="_blank"
-              dark
-              >To the Forum</v-btn
-            >
-            <v-btn color="blue" :href="docs_url" target="_blank" dark
-              >Read the Docs</v-btn
-            >
-          </v-container>
-        </v-flex>
-      </v-layout>
-
-      <v-layout>
-        <v-flex xs12 sm6 offset-sm3>
-          <v-container grid-list-sm fluid>
-            <h3>This site was made with Vuejs & Vuetify</h3>
-            <h3>
-              <a
-                href="https://github.com/adenforshaw/thecatapi-website"
-                target="_blank"
-                >You can fork it on Github</a
+        <div class="footer-controls">
+          <v-layout>
+            <v-flex xs12>
+              <label
+                :style="bar_colour"
+                class="font-italic app-infoline white--text px-2 py-2"
               >
-            </h3>
-          </v-container>
-        </v-flex>
-      </v-layout>
-    </div>
-    <CodeExamples />
-    <div>
-      <v-layout>
-        <v-flex xs12 sm6 offset-sm3>
-          <v-container grid-list-sm fluid>
-            <p>
-              <small
-                ><router-link to="/privacy">Privacy Policy</router-link> |
-                <router-link to="/terms">Terms & Conditions</router-link> |
-                <a :href="docs_url" target="_blank">Documentation</a></small
-              >
-            </p>
-          </v-container>
-        </v-flex>
-      </v-layout>
-    </div>
+                {{ app_title }} {{ app_infoline }}
+              </label>
+            </v-flex>
+          </v-layout>
+        </div>
+      </v-container>
+    </v-layout>
+    <pricing />
   </v-container>
 </template>
 
@@ -168,6 +133,7 @@ import Favourites from "../components/Sections/Favourites";
 import Upload from "../components/Sections/Upload";
 import Breeds from "../components/Sections/Breeds";
 import CodeExamples from "../components/CodeExamples";
+import Pricing from "../components/Sections/Pricing";
 
 export default {
   components: {
@@ -177,6 +143,7 @@ export default {
     Upload,
     Breeds,
     CodeExamples,
+    Pricing,
   },
   created() {
     console.log(process.env.VUE_APP_NAME);
@@ -199,16 +166,43 @@ export default {
       docs_url: process.env.VUE_APP_DOCS_URL,
       app_title: process.env.VUE_APP_TITLE,
       app_strapline: process.env.VUE_APP_STRAPLINE,
+      app_substrapline: process.env.VUE_APP_SUB_STRAPLINE,
+      app_infoline: process.env.VUE_APP_INFOLINE,
       app_description: process.env.VUE_APP_DESCRIPTION,
       app_logo_url: process.env.VUE_APP_LOGO_URL,
-      app_premium_test_url: process.env.VUE_APP_PREMIUM_TEST_URL
+      text_colour: "color:" + process.env.VUE_APP_PRIMARY_COLOUR,
+      bar_colour: "background-color:" + process.env.VUE_APP_PRIMARY_COLOUR,
+      app_premium_test_url: process.env.VUE_APP_PREMIUM_TEST_URL,
+      app_pricing_url: process.env.VUE_APP_PRICING_URL,
     };
   },
 };
 </script>
 
 <style scoped>
-#title-text {
-  padding-bottom: 40px;
+.title-text {
+  padding-bottom: 30px;
+}
+.inline-link {
+  text-decoration: none;
+  color: inherit;
+}
+.tech-stack-logo {
+  max-width: 100px;
+}
+.app-infoline {
+  line-height: 1.5;
+}
+@media screen and (min-width: 1024px) {
+  .title-text {
+    padding-bottom: 40px;
+  }
+  h1.title-text {
+    font-size: 3em;
+  }
+  .tech-stack-logo {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }
 </style>

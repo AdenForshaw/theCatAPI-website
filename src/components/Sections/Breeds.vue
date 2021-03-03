@@ -20,8 +20,7 @@
             <v-carousel-item
               v-for="(item,i) in images"
               :key="i"
-              contain
-                      :src="item.url"
+              :src="item.url"
             >
 
             </v-carousel-item>
