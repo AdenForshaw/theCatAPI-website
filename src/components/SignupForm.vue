@@ -38,7 +38,7 @@
       ></v-radio>
     </v-radio-group>
     <v-checkbox
-      label=" Opt-in to my newsletter about other APIs i'm building?"
+      label=" Opt-in to my newsletter about other APIs I'm building?"
       v-model="opt_in"
     ></v-checkbox>
 
