@@ -14,7 +14,7 @@
             If there's anything you need then please don't hesitate to email me directly
             <p><small>Aden@ThatAPIguy.com</small></p>
     <v-btn color="blue" :href="docs_url" target="_blank" dark>Open Documentation</v-btn>
-    <v-btn color="blue" href="https://discord.gg/FjawB3QM" target="_blank" dark>Join API Discord Group</v-btn>
+    <v-btn color="blue" href="https://discord.gg/W4NNfVYf28" target="_blank" dark>Join API Discord Group</v-btn>
         </div>
     </v-layout>
     </v-flex>
