@@ -5,6 +5,9 @@
         <v-layout row wrap>
           <v-flex sm3>
             <p class="text-xs-left">
+              <strong>Details</strong>
+            </p>
+            <p class="text-xs-left">
               <a
                 class="text-link"
                 href="https://thatapicompany.com/"
@@ -24,11 +27,9 @@
             </p>
           </v-flex>
           <v-flex sm3>
-            <!--p class="text-xs-left">
-              <a class="text-link" href="#" target="_blank"
-                >The API Platform</a
-              >
-            </p-->
+            <p class="text-xs-left">
+              <strong>Community and Support</strong>
+            </p>
             <p class="text-xs-left">
               <a class="text-link" href="forum_url" target="_blank">Forum</a>
             </p>
@@ -38,6 +39,49 @@
                 href="https://github.com/adenforshaw/thecatapi-website"
                 target="_blank"
                 >Github</a
+              >
+            </p>
+            <p class="text-xs-left">
+              <a
+                class="text-link"
+                href="https://discord.gg/SRaRFcQ7Yw"
+                target="_blank"
+              >
+                Discord</a
+              >
+            </p>
+          </v-flex>
+          <v-flex sm3>
+            <p class="text-xs-left">
+              <strong>Our other APIs</strong>
+            </p>
+            <p class="text-xs-left">
+              <a class="text-link" href="https://theauthapi.com" target="_blank"
+                >The Auth API</a
+              >
+            </p>
+            <p class="text-xs-left">
+              <a
+                class="text-link"
+                href="https://www.thereportapi.com/"
+                target="_blank"
+                >The Report API</a
+              >
+            </p>
+            <p class="text-xs-left">
+              <a
+                class="text-link"
+                href="https://www.theanalyticsapi.com/"
+                target="_blank"
+                >The Analytics API</a
+              >
+            </p>
+            <p class="text-xs-left">
+              <a
+                class="text-link"
+                href="https://www.theimageapi.com/"
+                target="_blank"
+                >The Image API</a
               >
             </p>
           </v-flex>
