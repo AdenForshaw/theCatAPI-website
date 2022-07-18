@@ -5,6 +5,7 @@
       <v-btn flat :href="pricing_url">Pricing</v-btn>
       <v-btn flat :href="about_url" target="_blank">About</v-btn>
       <v-btn flat :href="pricing_url">Pricing</v-btn>
+      <v-btn flat :href="docs_url">Documentation</v-btn>
       <v-btn flat :href="showcase_url">Showcase</v-btn>
     </v-toolbar-items>
 
