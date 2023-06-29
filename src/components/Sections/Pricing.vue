@@ -116,15 +116,8 @@
                     <a href="http://forum.thatapiguy.com/">Community forums</a>
                   </li>
                   <li>SSL Encryption</li>
-                </ul>
-              </div>
-              <div class="pa-4">
-                <ul class="text-xs-left">
                   <li><b>Curated Facts / Jokes / Quotes</b></li>
                   <li><b>Analytics</b></li>
-                  <li><b>Higher resolution Pictures</b></li>
-                  <li><b>Premium Images</b></li>
-                  <li><b>Video</b></li>
                   <li><b>Realtime web hooks</b></li>
                 </ul>
               </div>
@@ -175,10 +168,7 @@
                     <a href="http://forum.thatapiguy.com/">Community forums</a>
                   </li>
                   <li>SSL Encryption</li>
-                </ul>
-              </div>
-              <div class="pa-4">
-                <ul class="text-xs-left">
+
                   <li><b>Curated Facts / Jokes / Quotes</b></li>
                   <li><b>Analytics</b></li>
                   <li><b>Higher resolution Pictures</b></li>
