@@ -143,7 +143,7 @@ export default {
       message: "",
       modalshow: false,
       loading: false,
-      signupUrl: process.env.VUE_APP_COMMERCIAL_SINGUP_URL
+      signupUrl: process.env.VUE_APP_COMMERCIAL_SIGNUP_URL
     };
   },
   methods: {
