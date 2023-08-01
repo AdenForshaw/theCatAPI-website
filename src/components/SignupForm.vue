@@ -37,7 +37,7 @@
           <v-radio-group v-model="user_type" required>
             <p>What type of project will you use the API for?</p>
             <h6 class="title grey--text text--darken-2 mb-3">
-              Non Commercial
+              Non Commercial Use
             </h6>
             <v-radio label="A personal project" value="personal"></v-radio>
             <v-radio
@@ -45,7 +45,7 @@
               value="classroom"
             ></v-radio>
             <h6 class="title grey--text text--darken-2 mb-3 mt-3">
-              Commercial
+              Commercial Use
             </h6>
             <v-radio label="A business project" value="business"></v-radio>
             <v-layout v-if="user_type === 'business'" column class="test">
