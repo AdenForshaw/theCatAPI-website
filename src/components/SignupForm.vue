@@ -48,7 +48,11 @@
               Commercial Use
             </h6>
             <v-radio label="A business project" value="business"></v-radio>
-            <v-layout v-if="user_type === 'business'" column class="test">
+            <v-layout
+              v-if="user_type === 'business' && appId === 'CAT'"
+              column
+              class="test"
+            >
               <h5 class="alert--heading">Hi 👋, Did you know?</h5>
               <p>
                 We have a commercial license for the Cat API. The commercial
@@ -143,6 +147,7 @@ export default {
       modalshow: false,
       loading: false,
       signupUrl: process.env.VUE_APP_COMMERCIAL_SIGNUP_URL,
+      appId: process.env.VUE_APP_ID,
     };
   },
   methods: {
