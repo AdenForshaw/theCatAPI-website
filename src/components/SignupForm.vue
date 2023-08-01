@@ -87,7 +87,6 @@
           ></v-checkbox>
 
           <v-btn
-            v-if="user_type !== 'business'"
             :disabled="loading"
             id="login"
             dark
@@ -134,7 +133,7 @@ export default {
     return {
       email: "",
       app_description: "",
-      emailRules: [v => !!v || "E-mail is required"],
+      emailRules: [(v) => !!v || "E-mail is required"],
       valid: false,
       checkbox: true,
       user_type: null,
@@ -143,7 +142,7 @@ export default {
       message: "",
       modalshow: false,
       loading: false,
-      signupUrl: process.env.VUE_APP_COMMERCIAL_SIGNUP_URL
+      signupUrl: process.env.VUE_APP_COMMERCIAL_SIGNUP_URL,
     };
   },
   methods: {
@@ -180,7 +179,7 @@ export default {
         email: scope.email,
         appDescription: scope.app_description,
         opted_into_mailing_list: scope.opt_in,
-        details: { user_type: scope.user_type }
+        details: { user_type: scope.user_type },
       };
       try {
         await scope.$store.dispatch("TheCatAPI/signup", userCredentials);
@@ -208,8 +207,8 @@ export default {
         this.errorModal(title, message);
         scope.$emit("error", message);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
