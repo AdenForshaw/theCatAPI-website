@@ -2,7 +2,7 @@
   <v-footer class="footer" dark height="auto">
     <v-layout>
       <v-container>
-        <v-layout row wrap>
+        <v-layout row wrap justify-center>
           <v-flex sm3>
             <p class="text-xs-left">
               <strong>Details</strong>
