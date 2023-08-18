@@ -20,13 +20,20 @@
                   </h2></v-flex
                 >
                 <v-flex xs8
-                  ><p class="text-xs-left mb-0">
+                  ><p class="text-xs-left">
                     {{ app_description }}
                     <a :href="app_pricing_url"
                       >Get your license now.</a
                     >
                   </p></v-flex
                 >
+                <v-flex xs8>
+                  <p
+                      class="app-infoline text-xs-left mb-0"
+                  >
+                    {{ app_title }} {{ app_infoline }}
+                  </p>
+                </v-flex>
               </v-layout>
               <v-layout row>
                 <v-flex class="tech-stack-logo px-3">
@@ -104,19 +111,6 @@
                   </v-tabs-items>
                 </v-flex>
               </v-layout>
-            </v-flex>
-          </v-layout>
-        </div>
-
-        <div class="footer-controls">
-          <v-layout>
-            <v-flex xs12>
-              <label
-                :style="bar_colour"
-                class="font-italic app-infoline white--text px-2 py-2"
-              >
-                {{ app_title }} {{ app_infoline }}
-              </label>
             </v-flex>
           </v-layout>
         </div>

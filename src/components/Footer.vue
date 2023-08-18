@@ -2,7 +2,7 @@
   <v-footer class="footer" dark height="auto">
     <v-layout>
       <v-container>
-        <v-layout row wrap>
+        <v-layout row wrap justify-center>
           <v-flex sm3>
             <p class="text-xs-left">
               <strong>Details</strong>
@@ -84,6 +84,14 @@
                 >The Image API</a
               >
             </p>
+            <p class="text-xs-left">
+              <a
+                  class="text-link"
+                  :href="more_apis_url"
+                  target="_blank"
+              >More APIs</a
+              >
+            </p>
           </v-flex>
         </v-layout>
       </v-container>
@@ -133,6 +141,7 @@ export default {
     ],
     forum_url: process.env.VUE_APP_FORUM_URL,
     roadmap_url: process.env.VUE_APP_ROADMAP_URL,
+    more_apis_url: process.env.VUE_APP_MORE_APIS_URL,
   }),
 };
 </script>

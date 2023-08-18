@@ -4,7 +4,7 @@
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn flat :href="pricing_url">Pricing</v-btn>
       <v-btn flat :href="about_url" target="_blank">About</v-btn>
-      <v-btn flat :href="pricing_url">Pricing</v-btn>
+      <v-btn flat :href="more_apis_url" target="_blank">More APIs</v-btn>
       <v-btn flat :href="docs_url">Documentation</v-btn>
       <v-btn flat :href="showcase_url">Showcase</v-btn>
     </v-toolbar-items>
@@ -34,6 +34,11 @@
               >Showcase</v-list-tile-title
             >
           </v-list-tile>
+          <v-list-tile :href="more_apis_url" target="_blank">
+            <v-list-tile-title style="color:#595959;"
+              >More APIs</v-list-tile-title
+            >
+          </v-list-tile>
         </v-list>
       </v-menu>
     </v-toolbar-items>
@@ -49,6 +54,7 @@ export default {
       about_url: process.env.VUE_APP_ABOUT_URL,
       pricing_url: process.env.VUE_APP_PRICING_URL,
       showcase_url: "/showcase",
+      more_apis_url: process.env.VUE_APP_MORE_APIS_URL,
     };
   },
   name: "NavBar",
