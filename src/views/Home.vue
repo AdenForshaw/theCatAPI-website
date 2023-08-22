@@ -36,39 +36,51 @@
                 </v-flex>
               </v-layout>
               <v-layout row>
-                <v-flex class="tech-stack-logo px-3">
+                <v-flex class="tech-stack-logo">
                   <v-img
                     :src="require(`../assets/images/react.png`)"
                     contain
                   ></v-img>
                 </v-flex>
-                <v-flex class="tech-stack-logo px-3">
+                <v-flex class="tech-stack-logo">
                   <v-img
                     :src="require(`../assets/images/jquery.png`)"
                     contain
                   ></v-img>
                 </v-flex>
-                <v-flex class="tech-stack-logo px-3">
+                <v-flex class="tech-stack-logo">
                   <v-img
                     :src="require(`../assets/images/vue.png`)"
                     contain
                   ></v-img>
                 </v-flex>
-                <v-flex class="tech-stack-logo px-3">
+                <v-flex class="tech-stack-logo">
                   <v-img
                     :src="require(`../assets/images/node.png`)"
                     contain
                   ></v-img>
                 </v-flex>
-                <v-flex class="tech-stack-logo px-3">
+                <v-flex class="tech-stack-logo">
                   <v-img
                     :src="require(`../assets/images/angular.png`)"
                     contain
                   ></v-img>
                 </v-flex>
               </v-layout>
+              <v-layout row class="pt-4">
+                <v-layout column style="max-width: fit-content">
+                  <v-btn href="#pricing" class="orange accent-4 white--text ml-0" sha>
+                    Get your API Key
+                  </v-btn>
+                  <span style="font-size: 12px">
+                    free 10,000 requests / month
+                  </span>
+                </v-layout>
+                <v-btn outline :href="docs_url" class="orange accent-4 orange--text text--accent-4">
+                  Read our guides
+                </v-btn>
+              </v-layout>
             </v-flex>
-
             <v-flex xs12 sm5 class="title-text">
               <v-layout>
                 <v-flex xs12>
@@ -182,8 +194,14 @@ export default {
   color: inherit;
 }
 .tech-stack-logo {
-  max-width: 100px;
+  max-width: 64px;
+  margin-left: 16px;
 }
+
+.tech-stack-logo:first-child {
+  margin: 0;
+}
+
 .app-infoline {
   line-height: 1.5;
 }
